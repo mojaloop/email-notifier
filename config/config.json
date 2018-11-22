@@ -92,35 +92,17 @@
       }
     }
   },
-  "emailSetting": {
-    "mailOptions": {
-      "service": "gmail",
-      "auth": {
-        "user": "",
-        "pass": ""
-      }
-    },
-    "smtpConfig": {
-      "host": "smtp.gmail.com",
-      "port": 587,
-      "secureConnection": false,
-      "tls": {
-        "ciphers":"SSLv3"
+  "EMAIL_SETTINGS": {
+    "SMTP_CONFIG": {
+      "HOST": "smtp.gmail.com",
+      "PORT": 587,
+      "SECURE_CONNECTION": false,
+      "TLS": {
+        "CIPHERS":"SSLv3"
      },
-     
-      "auth": {
-        "user": "modusboxnotifier@gmail.com",
-        "pass": "m0dusb0xn0t1f13r"
-      }
-    },
-    "smtpPoolConfig": {
-      "pool": true,
-      "host": "smtp.example.com",
-      "port": 465,
-      "secure": false,
-      "auth": {
-        "user": "userName",
-        "pass": "passWord"
+      "AUTH": {
+        "USER": "modusboxnotifier@gmail.com",
+        "PASS": "m0dusb0xn0t1f13r"
       }
     }
   }

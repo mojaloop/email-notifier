@@ -27,7 +27,6 @@
 const Rx = require('rxjs')
 const Utility = require('../lib/utility')
 const Uuid = require('uuid4')
-const Config = require('../../config/config.json')
 const Enum = require('../lib/enum')
 const TransferEventType = Enum.transferEventType
 const TransferEventAction = Enum.transferEventAction
