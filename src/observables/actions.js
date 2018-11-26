@@ -84,7 +84,7 @@ const dictionary = {
       priority: 'high',
       from: hubNotificationDetails.value,
       to: dfspNotificationDetails.value,
-      subject: `${payload.messageDetails.limitType} threshold is breached`,
+      subject: payload.messageDetails.messageSubject,
       text: dfspEmailBody
     }
 
@@ -92,7 +92,7 @@ const dictionary = {
       priority: 'high',
       from: hubNotificationDetails.value,
       to: hubNotificationDetails.value,
-      subject: `DFSP ${payload.messageDetails.dfsp} ${payload.messageDetails.limitType} threshold is breached`,
+      subject: payload.messageDetails.messageSubject,
       text: hubEmailBody
     }
 
