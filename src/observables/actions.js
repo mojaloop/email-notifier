@@ -72,66 +72,6 @@ const dictionary = {
     return 'not implemented'
   },
 
-  // {
-  //   "id": "0eed9113-7605-4e5e-952a-a5eb3c77df11",
-  //   "from": "SYSTEM",
-  //   "to": "dfsp1",
-  //   "type": "application/json",
-  //   "content": {
-  //     "header": {},
-  //     "payload": {
-  //       "from": "SYSTEM",
-  //       "to": "dfsp1",
-  //       "recepientDetails": {
-  //         "_id": "5bebfe65617a4e64119c4d4e",
-  //         "name": "dfsp1",
-  //         "type": "NET_DEBIT_CAP_BREACH_MAIL",
-  //         "value": "vg@gm.com",
-  //         "action": "sendEmail",
-  //         "createdDate": "2018-11-14T10:52:21.448Z",
-  //         "__v": 0
-  //       },
-  //       "hubDetails": {
-  //         "_id": "5bebfe65617a4e64119c4d53",
-  //         "name": "Hub",
-  //         "type": "NET_DEBIT_CAP_BREACH_MAIL",
-  //         "value": "vg@gm.com",
-  //         "action": "sendEmail",
-  //         "createdDate": "2018-11-14T10:52:21.475Z",
-  //         "__v": 0
-  //       },
-  //       "messageDetails": {
-  //         "dfsp": "dfsp1",
-  //         "limitType": "NET_DEBIT_CAP",
-  //         "value": 4,
-  //         "position": 2880,
-  //         "triggeredBy": "5bebfec8c2b6177ee36f2403",
-  //         "fromEvent": "5bebfe65617a4e64119c4d54",
-  //         "repetitionsAllowed": 3,
-  //         "action": "sendEmail",
-  //         "notificationEndpointType": "NET_DEBIT_CAP_BREACH_MAIL",
-  //         "notificationInterval": 3,
-  //         "resetPeriod": 60
-  //       }
-  //     }
-  //   },
-  //   "metadata": {
-  //     "event": {
-  //       "id": "281bee59-0500-4882-9e74-e750d82ba522",
-  //       "responseTo": "78ea223d-a5b6-4e97-a00c-07c9a525d8db",
-  //       "type": "notification",
-  //       "action": "event",
-  //       "createdAt": "2018-11-14T10:54:12.811Z",
-  //       "state": {
-  //         "status": "success",
-  //         "code": 0,
-  //         "description": "action successful"
-  //       }
-  //     }
-  //   },
-  //   "pp": ""
-  // }
-
   sendEmail: async ({ payload }) => {
     const path = `${payload.messageDetails.language}/${payload.messageDetails.templateType}`
     const templates = await loadTemplates(path, 'mustache')

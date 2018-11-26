@@ -1,22 +1,4 @@
 {
-  "clearRepetitionTimerMs": 60000,
-  "swaggerOptions": {
-    "info": {
-      "title": "Central notification system API Documentation",
-      "description": "Api Documentation for central-notification"
-    },
-    "expanded": "full"
-  },
-  "mongo": {
-    "url": "localhost:27017",
-    "database": "mojaloop",
-    "ruleCollection": "Rule",
-    "netDebitCapPositionCollection": "NDCPosition",
-    "actionCollection": "Actions",
-    "eventCollection": "Events",
-    "limitCollection": "Limits",
-    "notificationEndpointCollection": "NotificationEndpoints"
-  },
   "KAFKA": {
     "TOPIC_TEMPLATES": {
       "NOTIFICATION_TOPIC_TEMPLATE": {
@@ -92,17 +74,17 @@
       }
     }
   },
-  "EMAIL_SETTINGS": {
-    "SMTP_CONFIG": {
-      "HOST": "smtp.gmail.com",
-      "PORT": 587,
-      "SECURE_CONNECTION": false,
-      "TLS": {
-        "CIPHERS":"SSLv3"
+  "emailSettings": {
+    "smtpConfig": {
+      "host": "smtp.gmail.com",
+      "port": 587,
+      "secureConnection": false,
+      "tls": {
+        "ciphers":"SSLv3"
      },
-      "AUTH": {
-        "USER": "modusboxnotifier@gmail.com",
-        "PASS": "m0dusb0xn0t1f13r"
+      "auth": {
+        "user": "modusboxnotifier@gmail.com",
+        "pass": "m0dusb0xn0t1f13r"
       }
     }
   }
