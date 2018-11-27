@@ -2,6 +2,7 @@ FROM mhart/alpine-node:8.9.4
 USER root
 
 WORKDIR /opt/email-notifier
+
 COPY src /opt/email-notifier/src
 COPY config /opt/email-notifier/config
 COPY package.json /opt/email-notifier/
