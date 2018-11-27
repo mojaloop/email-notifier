@@ -33,7 +33,7 @@ const Utility = require('./lib/utility')
 const Logger = require('@mojaloop/central-services-shared').Logger
 const Rx = require('rxjs')
 const { filter, switchMap } = require('rxjs/operators')
-const Observables = require('./observeables')
+const Observables = require('./observables')
 const createHealtcheck = require('healthcheck-server')
 const Config = require('./lib/config')
 
