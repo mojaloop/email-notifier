@@ -23,19 +23,20 @@
     "uuid4": "^1.1.4"
   },
   "scripts": {
+    "start": "node app.js",
     "test": "nyc mocha test/unit/**/*.test.js --timeout=4000",
     "test:coverage": "istanbul cover tape -- 'test/unit/**/*.test.js'"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/vgenev/central-notification.git"
+    "url": "git+https://github.com/mojaloop/email-notifier"
   },
   "author": "Valentin Genev",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/vgenev/central-notification/issues"
+    "url": "https://github.com/mojaloop/email-notifier"
   },
-  "homepage": "https://github.com/vgenev/central-notification#readme",
+  "homepage": "https://github.com/mojaloop/email-notifier#readme",
   "devDependencies": {
     "chai": "^4.2.0",
     "coveralls": "^3.0.2",

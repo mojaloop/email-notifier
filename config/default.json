@@ -1,15 +1,15 @@
 {
   "emailSettings": {
     "smtpConfig": {
-      "host": "smtp.gmail.com",
+      "host": "smtp-relay.sendinblue.com",
       "port": 587,
       "secureConnection": false,
       "tls": {
         "ciphers": "SSLv3"
       },
       "auth": {
-        "user": "modusboxnotifier@gmail.com",
-        "pass": "m0dusb0xn0t1f13r"
+        "user": "valentin.genev@modusbox.com",
+        "pass": "NdMCVgq5HROtDGI4"
       }
     }
   },
