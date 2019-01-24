@@ -43,9 +43,9 @@ const setup = async () => {
   const consumer = Consumer.getConsumer(topicName)
 
   createHealtcheck({
-    port: Config.get('healthCheckPort'),
-    path: '/healthcheck',
-    status: ({cpu, memory}) => {
+    port: Config.get('PORT'),
+    path: '/health',
+    status: ({ cpu, memory }) => {
       if (consumer._status.running) return true
       else return false
     }
@@ -53,6 +53,7 @@ const setup = async () => {
 
   const topicObservable = Rx.Observable.create((observer) => {
     consumer.on('message', async (data) => {
+      Logger.info(`Central-Event-Processor :: Topic ${topicName} :: Payload: \n${JSON.stringify(data.value, null, 2)}`)
       observer.next(data)
       if (!Consumer.isConsumerAutoCommitEnabled(topicName)) {
         consumer.commitMessageSync(data)

@@ -30,11 +30,32 @@
 
 const Nodemailer = require('nodemailer')
 const Config = require('../lib/config')
-const MailOptions = Config.get('emailSettings')
+const MailOptions = Config.get('emailSettings').smtpConfig
 
-const transporter = Nodemailer.createTransport(MailOptions)
+class Mailer {
+  constructor (options = MailOptions) {
+    this.transporter = Nodemailer.createTransport(options)
+  }
 
-let verifyEmailTransport = () => {
+  async sendMailMessage (message) {
+    return new Promise((resolve, reject) => {
+      this.transporter.sendMail(message, (error, info) => {
+        if (error) {
+          reject(error)
+        } else {
+          console.log('else hit')
+          resolve({
+            emailSent: info.response
+          })
+        }
+      })
+    })
+  }
+}
+
+// let transporter
+
+/* let verifyEmailTransport = () => {
   return new Promise((resolve, reject) => {
     transporter.verify(function (error, success) {
       if (error) {
@@ -44,18 +65,24 @@ let verifyEmailTransport = () => {
       }
     })
   })
-}
+} */
 
-let sendMailMessage = async (message) => {
-  return new Promise((resolve, reject) => {
-    transporter.sendMail(message, (error, info) => {
-      if (error) {
-        reject(error)
-      } else {
-        resolve({ emailSent: info.response })
-      }
-    })
-  })
-}
+// let sendMailMessage = async (message) => {
+//   if (!transporter) {
+//     transporter = await Nodemailer.createTransport(MailOptions)
+//   }
+//   return new Promise((resolve, reject) => {
+//     transporter.sendMail(message, (error, info) => {
+//       if (error) {
+//         reject(error)
+//       } else {
+//         console.log('else hit')
+//         resolve({
+//           emailSent: info.response
+//         })
+//       }
+//     })
+//   })
+// }
 
-module.exports = { sendMailMessage, verifyEmailTransport }
+module.exports = { Mailer }

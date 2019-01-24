@@ -1,4 +1,19 @@
 {
+  "emailSettings": {
+    "smtpConfig": {
+      "host": "smtp.gmail.com",
+      "port": 587,
+      "secureConnection": false,
+      "tls": {
+        "ciphers": "SSLv3"
+      },
+      "auth": {
+        "user": "modusboxnotifier@gmail.com",
+        "pass": "m0dusb0xn0t1f13r"
+      }
+    }
+  },
+  "PORT": 3081,
   "KAFKA": {
     "TOPIC_TEMPLATES": {
       "NOTIFICATION_TOPIC_TEMPLATE": {
@@ -73,20 +88,5 @@
         }
       }
     }
-  },
-  "emailSettings": {
-    "smtpConfig": {
-      "host": "smtp.gmail.com",
-      "port": 587,
-      "secureConnection": false,
-      "tls": {
-        "ciphers":"SSLv3"
-     },
-      "auth": {
-        "user": "modusboxnotifier@gmail.com",
-        "pass": "m0dusb0xn0t1f13r"
-      }
-    }
-  },
-  "healthCheckPort": 3081
+  }
 }

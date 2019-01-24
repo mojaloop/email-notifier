@@ -13,5 +13,5 @@
       }
     }
   },
-  "healthCheckPort": "MAIL_NOTIF_HEALTH_PORT"
+  "PORT": "MAIL_NOTIF_PORT"
 }

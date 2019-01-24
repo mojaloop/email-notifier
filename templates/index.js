@@ -13,7 +13,8 @@ const getTemplateNamesByType = async (path, type) => {
         return filename
       }
     })
-    return { path, names }
+    if (names.length) return { path, names }
+    else throw new Error('No such template type')
   } catch (e) {
     throw e
   }
@@ -24,15 +25,20 @@ const loadTemplates = async ({ path, names }) => {
     let result = {}
     for (let name of names) {
       let content = await readFilePromise(`${__dirname}/${path}/${name}`, { encoding: 'utf8' })
-      result[name.split('.')[0]] = content
+      if (content) result[name.split('.')[0]] = content
     }
-    return result
+    if (Object.keys(result).length) return result
+    else throw new Error(`Templates cannot be loaded`)
   } catch (e) {
     throw e
   }
 }
 
 module.exports.loadTemplates = async (path, type) => {
-  let result = await loadTemplates(await getTemplateNamesByType(path, type))
-  return result
+  try {
+    let result = await loadTemplates(await getTemplateNamesByType(path, type))
+    return result
+  } catch (e) {
+    throw e
+  }
 }
