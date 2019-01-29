@@ -88,5 +88,8 @@
         }
       }
     }
+  },
+  "HUB_PARTICIPANT": {
+    "NAME": "Hub"
   }
 }
