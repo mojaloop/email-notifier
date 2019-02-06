@@ -38,6 +38,7 @@ const createHealtcheck = require('healthcheck-server')
 const Config = require('./lib/config')
 
 const setup = async () => {
+  const hubName = Config.get('HUB_PARTICIPANT').NAME
   await Consumer.registerNotificationHandler()
   const topicName = Utility.transformGeneralTopicName(Utility.ENUMS.NOTIFICATION, Utility.ENUMS.EVENT)
   const consumer = Consumer.getConsumer(topicName)
@@ -62,9 +63,8 @@ const setup = async () => {
   })
 
   const emailNotification = topicObservable
-    .pipe(filter(data => data.value.from === 'SYSTEM'),
+    .pipe(filter(data => data.value.from === hubName),
       switchMap(Observables.actionObservable))
-
   emailNotification.subscribe(result => {
     Logger.info(result)
   })

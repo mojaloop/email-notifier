@@ -1,7 +1,7 @@
 # email-notifier
 Stand-alone email service that consumes messages from kafka topic, produced by the central-notifications service.
-The central-notificattions repo is available [here](https://github.com/mojaloop/central-notifications/tree/develop)
-The email-notifier flow is available [here](https://github.com/mojaloop/central-notifications/tree/develop#Notifierflowseparateservice)
+The central-notificattions repo is available [here](https://github.com/mojaloop/central-notifications/tree/master)
+The email-notifier flow is available [here](https://github.com/mojaloop/central-notifications/tree/master#Notifierflowseparateservice)
 
 ## Config
 

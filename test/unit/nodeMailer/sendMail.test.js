@@ -28,6 +28,7 @@ const Test = require('tapes')(require('tape'))
 const Sinon = require('sinon')
 const Mailer = require('../../../src/nodeMailer/sendMail').Mailer
 const nodemailer = require('nodemailer')
+const Config = require('../../../src/lib/config')
 
 Test('nodeMailer unit tests (sendMail.js) : ', async sendMailTest => {
   let sandbox
@@ -49,13 +50,13 @@ Test('nodeMailer unit tests (sendMail.js) : ', async sendMailTest => {
   await sendMailTest.test(' sendMail should return success.', async assert => {
     let mockMessage = {
       'value': {
-        'from': 'SYSTEM',
+        'from': Config.get('HUB_PARTICIPANT').NAME,
         'to': 'dfsp1',
         'id': '694dd040-a315-4427-bcf0-e29229c4defe',
         'content': {
           'header': {},
           'payload': {
-            'from': 'SYSTEM',
+            'from': Config.get('HUB_PARTICIPANT').NAME,
             'to': 'dfsp1',
             'recepientDetails': {
               '_id': '5bf5480aa305f9801a6d59db',
@@ -146,13 +147,13 @@ Test('nodeMailer unit tests (sendMail.js) : ', async sendMailTest => {
   await sendMailTest.test(' sendMail should throw an error.', async assert => {
     let mockMessage = {
       'value': {
-        'from': 'SYSTEM',
+        'from': Config.get('HUB_PARTICIPANT').NAME,
         'to': 'dfsp1',
         'id': '694dd040-a315-4427-bcf0-e29229c4defe',
         'content': {
           'header': {},
           'payload': {
-            'from': 'SYSTEM',
+            'from': Config.get('HUB_PARTICIPANT').NAME,
             'to': 'dfsp1',
             'recepientDetails': {
               '_id': '5bf5480aa305f9801a6d59db',

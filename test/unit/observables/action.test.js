@@ -28,6 +28,7 @@ const Test = require('tapes')(require('tape'))
 const Email = require('../../../src/nodeMailer/sendMail').Mailer
 const Sinon = require('sinon')
 const ActionObservable = require('../../../src/observables/actions').actionObservable
+const Config = require('../../../src/lib/config')
 
 Test('RxJs Observable Tests (Action Observable) : ', async actionTest => {
   Sinon.config = {
@@ -52,13 +53,13 @@ Test('RxJs Observable Tests (Action Observable) : ', async actionTest => {
   await actionTest.test('Should test the actionObservable succeeds', async assert => {
     let mockMessage = {
       'value': {
-        'from': 'SYSTEM',
+        'from': Config.get('HUB_PARTICIPANT').NAME,
         'to': 'dfsp1',
         'id': '694dd040-a315-4427-bcf0-e29229c4defe',
         'content': {
           'header': {},
           'payload': {
-            'from': 'SYSTEM',
+            'from': Config.get('HUB_PARTICIPANT').NAME,
             'to': 'dfsp1',
             'recepientDetails': {
               '_id': '5bf5480aa305f9801a6d59db',
@@ -141,13 +142,13 @@ Test('RxJs Observable Tests (Action Observable) : ', async actionTest => {
   await actionTest.test('Should fail when sent mail message fails.', async assert => {
     let mockMessage = {
       'value': {
-        'from': 'SYSTEM',
+        'from': Config.get('HUB_PARTICIPANT').NAME,
         'to': 'dfsp1',
         'id': '694dd040-a315-4427-bcf0-e29229c4defe',
         'content': {
           'header': {},
           'payload': {
-            'from': 'SYSTEM',
+            'from': Config.get('HUB_PARTICIPANT').NAME,
             'to': 'dfsp1',
             'recepientDetails': {
               '_id': '5bf5480aa305f9801a6d59db',
@@ -227,13 +228,13 @@ Test('RxJs Observable Tests (Action Observable) : ', async actionTest => {
   await actionTest.test('Should test the actionObservable fails with incorrect action', async assert => {
     let mockMessage = {
       'value': {
-        'from': 'SYSTEM',
+        'from': Config.get('HUB_PARTICIPANT').NAME,
         'to': 'dfsp1',
         'id': '694dd040-a315-4427-bcf0-e29229c4defe',
         'content': {
           'header': {},
           'payload': {
-            'from': 'SYSTEM',
+            'from': Config.get('HUB_PARTICIPANT').NAME,
             'to': 'dfsp1',
             'recepientDetails': {
               '_id': '5bf5480aa305f9801a6d59db',
