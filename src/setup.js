@@ -65,6 +65,7 @@ const setup = async () => {
   const emailNotification = topicObservable
     .pipe(filter(data => data.value.from === hubName),
       switchMap(Observables.actionObservable))
+
   emailNotification.subscribe(result => {
     Logger.info(result)
   })
