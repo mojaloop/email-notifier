@@ -2,25 +2,26 @@
     COLD are the rest observables */
 
 const marbles = require('rxjs-marbles/tape').marbles
-// const Sinon = require('sinon')
+const Sinon = require('sinon')
 const Test = require('tapes')(require('tape'))
 // const Setup = require('../../src/setup').setup
 // const Kafka = require('../../src/lib/kafka')
 // const KafkaConsumer = require('@mojaloop/central-services-stream').Kafka.Consumer
 // const Rx = require('rxjs')
 const { filter, switchMap } = require('rxjs/operators')
-
-const TestScheduler = require('rxjs/testing').TestScheduler
-
-const scheduler = new TestScheduler((actual, expected) => {
-
-})
+const Mailer = require('../../src/nodeMailer/sendMail').Mailer
+const Config = require('../../src/lib/config')
 
 const Observables = require('../../src/observables/actions')
-const Config = require('../../src/lib/config')
 const hubName = Config.get('HUB_PARTICIPANT').NAME
 
 Test('Test the action observables Setup', marbles((m, t) => {
+  let sandbox
+  sandbox = Sinon.createSandbox()
+  // start stubbing stuff
+  sandbox.stub(Mailer.prototype, 'sendMailMessage')
+  let emailer = new Mailer()
+  emailer.sendMailMessage.resolves(true)
 
   t.plan(1)
 
@@ -101,14 +102,25 @@ Test('Test the action observables Setup', marbles((m, t) => {
     b: {}
   }
 
-  const source = m.cold('---a-b-|', inputs)
-  const subs =          '^------!'
-  const expected =      '---a---|'
+  const outputs = {
+    r: {
+      dfspMailResult: true,
+      hubMailResult: true
+    }
+  }
 
-  const destination = source.pipe(filter(data => data.value.from === hubName),
+  const source =   m.cold('-a', inputs) // topic observable
+  // const subs =            '^a'
+  const expected = m.cold('r', outputs)
+
+  const destination = source
+  .pipe(filter(data => data.value.from === hubName),
   switchMap(Observables.actionObservable))
-  //m.expect(source).toHaveSubscriptions(subs)
+  
+  // const subscription = destination.subscribe()
+  // m.expect(source).toHaveSubscriptions(subs)
   m.expect(destination).toBeObservable(expected)
+  
   // t.end()
 })) 
 
