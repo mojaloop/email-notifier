@@ -39,8 +39,8 @@
               "consumeTimeout": 1000
             },
             "rdkafkaConf": {
-              "client.id": "cep-con-notification-event",
-              "group.id": "notifier",
+              "client.id": "enotifier-con",
+              "group.id": "enotifier-group",
               "metadata.broker.list": "localhost:9092",
               "socket.blocking.max.ms": 1,
               "fetch.wait.max.ms": 1,
@@ -70,7 +70,7 @@
             "rdkafkaConf": {
               "debug": "all",
               "metadata.broker.list": "localhost:9092",
-              "client.id": "cep-prod-notification-event",
+              "client.id": "enotifier-prod",
               "event_cb": true,
               "compression.codec": "none",
               "retry.backoff.ms": 100,
