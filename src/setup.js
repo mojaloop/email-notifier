@@ -69,6 +69,7 @@ const setup = async () => {
   emailNotification.subscribe(result => {
     Logger.info(result)
   })
+  return true
 }
 
 module.exports = {
