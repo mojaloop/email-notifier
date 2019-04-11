@@ -51,7 +51,7 @@ const Enum = require('./enum')
  * @enum {object} ENUMS~PRODUCER
  * @property {string} PRODUCER - PRODUCER config to be fetched
  */
-const PRODUCER = 'PRODUCER'
+// const PRODUCER = 'PRODUCER'
 /**
  * The Consumer config required
  *
@@ -115,7 +115,7 @@ const STATE = {
  * @property {string} CONSUMER - This ENUM is for the CONSUMER
  */
 const ENUMS = {
-  PRODUCER,
+  // PRODUCER,
   CONSUMER,
   NOTIFICATION,
   STATE,
@@ -274,24 +274,24 @@ const createState = (status, code, description) => {
   }
 }
 
-/**
- * @function createGeneralTopicConfig
- *
- * @param {string} functionality - the functionality flow. Example: 'transfer' ie: note the case of text
- * @param {string} action - the action that applies to the flow. Example: 'prepare' ie: note the case of text
- * @param {number} partition - optional partition to produce to
- * @param {*} opaqueKey - optional opaque token, which gets passed along to your delivery reports
- *
- * @returns {object} - Returns newly created general topicConfig
- */
-const createGeneralTopicConf = (functionality, action, partition = 0, opaqueKey = 0) => {
-  return {
-    topicName: transformGeneralTopicName(functionality, action),
-    key: Uuid(),
-    partition,
-    opaqueKey
-  }
-}
+// /**
+//  * @function createGeneralTopicConfig
+//  *
+//  * @param {string} functionality - the functionality flow. Example: 'transfer' ie: note the case of text
+//  * @param {string} action - the action that applies to the flow. Example: 'prepare' ie: note the case of text
+//  * @param {number} partition - optional partition to produce to
+//  * @param {*} opaqueKey - optional opaque token, which gets passed along to your delivery reports
+//  *
+//  * @returns {object} - Returns newly created general topicConfig
+//  */
+// const createGeneralTopicConf = (functionality, action, partition = 0, opaqueKey = 0) => {
+//   return {
+//     topicName: transformGeneralTopicName(functionality, action),
+//     key: Uuid(),
+//     partition,
+//     opaqueKey
+//   }
+// }
 
 /**
  * @function produceGeneralMessage
@@ -311,22 +311,23 @@ const createGeneralTopicConf = (functionality, action, partition = 0, opaqueKey 
  *
  * @returns {object} - Returns a boolean: true if successful, or throws and error if failed
  */
-const produceGeneralMessage = async (functionality, action, message, state) => {
-  let functionalityMapped = functionality
-  let actionMapped = action
-  if (Enum.topicMap[functionality] && Enum.topicMap[functionality][action]) {
-    functionalityMapped = Enum.topicMap[functionality][action].functionality
-    actionMapped = Enum.topicMap[functionality][action].action
-  }
-  await Kafka.Producer.produceMessage(updateMessageProtocolMetadata(message, functionality, action, state),
-    createGeneralTopicConf(functionalityMapped, actionMapped),
-    getKafkaConfig(ENUMS.PRODUCER, functionalityMapped.toUpperCase(), actionMapped.toUpperCase()))
-}
+// const produceGeneralMessage = async (functionality, action, message, state) => {
+//   let functionalityMapped = functionality
+//   let actionMapped = action
+//   if (Enum.topicMap[functionality] && Enum.topicMap[functionality][action]) {
+//     functionalityMapped = Enum.topicMap[functionality][action].functionality
+//     actionMapped = Enum.topicMap[functionality][action].action
+//   }
+//   await Kafka.Producer.produceMessage(updateMessageProtocolMetadata(message, functionality, action, state),
+//     createGeneralTopicConf(functionalityMapped, actionMapped),
+//     getKafkaConfig(ENUMS.PRODUCER, functionalityMapped.toUpperCase(), actionMapped.toUpperCase()))
+// }
 
 exports.transformGeneralTopicName = transformGeneralTopicName
 exports.getKafkaConfig = getKafkaConfig
 exports.updateMessageProtocolMetadata = updateMessageProtocolMetadata
 exports.createPrepareErrorStatus = createPrepareErrorStatus
 exports.createState = createState
-exports.produceGeneralMessage = produceGeneralMessage
+// exports.produceGeneralMessage = produceGeneralMessage
 exports.ENUMS = ENUMS
+// exports.createGeneralTopicConf = createGeneralTopicConf

@@ -1,6 +1,7 @@
 const Sinon = require('sinon')
 const Test = require('tapes')(require('tape'))
 const Proxyquire = require('proxyquire')
+const Config = require('../../src/lib/config')
 
 Test('Setup test', async setupTest => {
   let sandbox,
@@ -79,13 +80,24 @@ Test('Setup test', async setupTest => {
     sandbox.restore()
     t.end()
   })
+  let consumer
+  let statusFunc = ({ cpu, memory }) => {
+    if (consumer._status.running) return true
+    else return false
+  }
 
   await setupTest.test('setup should', async assert => {
     try {
       let result = await setupProxy.setup()
       assert.ok(result, 'Notifier setup finished')
       assert.ok(healthcheckStub.calledOnce, 'healthCheck initialized')
+      assert.ok(healthcheckStub.withArgs({
+        port: Config.get('PORT'),
+        path: '/health',
+        status: statusFunc
+      }))
       assert.ok(RxStub.Observable.create.calledOnce, 'Observable created')
+      assert.ok(operatorsStub.filter.calledOnce, 'Filter created')
       assert.end()
     } catch (e) {
       console.error(e)

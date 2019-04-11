@@ -33,11 +33,11 @@
  * @module src/lib/kafka/index
  */
 
-const Producer = require('./producer')
+// const Producer = require('./producer')
 const Consumer = require('./consumer')
 // const Cron = require('./cron')
 
 module.exports = {
-  Producer,
+  // Producer,
   Consumer
 }
