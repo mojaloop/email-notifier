@@ -32,7 +32,7 @@ const Consumer = require('./lib/kafka/consumer')
 const Utility = require('./lib/utility')
 const Logger = require('@mojaloop/central-services-shared').Logger
 const Rx = require('rxjs')
-const { filter, switchMap } = require('rxjs/operators')
+const { filter, flatMap } = require('rxjs/operators')
 const Observables = require('./observables')
 const createHealtcheck = require('healthcheck-server')
 const Config = require('./lib/config')
@@ -64,7 +64,7 @@ const setup = async () => {
 
   const emailNotification = topicObservable
     .pipe(filter(data => data.value.from === hubName),
-      switchMap(Observables.actionObservable))
+      flatMap(Observables.actionObservable))
   emailNotification.subscribe(result => {
     Logger.info(result)
   })
