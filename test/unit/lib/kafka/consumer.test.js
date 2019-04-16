@@ -33,6 +33,7 @@ const Sinon = require('sinon')
 const Test = require('tapes')(require('tape'))
 const Consumer = require(`${src}/lib/kafka/consumer`)
 const KafkaConsumer = require('@mojaloop/central-services-stream').Kafka.Consumer
+const Utility = require(`${src}/lib/utility`)
 
 const rewire = require('rewire')
 
@@ -145,65 +146,28 @@ Test('Consumer', ConsumerTest => {
     isConsumerAutoCommitEnabledTest.end()
   })
 
-  Consumer.test('register Notification Handler should', registerHandlerTest => {
-    registerHandlerTest.test('register getTransferHandler should', registerNotificationHandlerTest => {
-      registerNotificationHandlerTest.test('return a true when registering the transfer handler', async (test) => {
-        let localMessages = Util.clone(messages)
-        await Consumer.createHandler(topicName, config, command)
-        Utility.transformAccountToTopicName.returns(topicName)
-        Utility.getKafkaConfig.returns(config)
-        const result = await allTransferHandlers.registerGetTransferHandler(null, localMessages)
-        test.equal(result, true)
-        test.end()
-      })
-  
-      registerTransferhandler.test('return an error when registering the transfer handler.', async (test) => {
-        try {
-          await Kafka.Consumer.createHandler(topicName, config, command)
-          Utility.transformGeneralTopicName.returns(topicName)
-          Utility.getKafkaConfig.throws(new Error())
-          await allTransferHandlers.registerGetTransferHandler()
-          test.fail('Error not thrown')
-          test.end()
-        } catch (e) {
-          test.pass('Error thrown')
-          test.end()
-        }
-      })
-      registerTransferhandler.end()
-    })
-  
-  
-    transferHandlerTest.test('register getTransferHandler should', registerTransferhandler => {
-      registerTransferhandler.test('return a true when registering the transfer handler', async (test) => {
-        let localMessages = Util.clone(messages)
-        await Consumer.createHandler(topicName, config, command)
-        Utility.transformAccountToTopicName.returns(topicName)
-        Utility.getKafkaConfig.returns(config)
-        const result = await allTransferHandlers.registerGetTransferHandler(null, localMessages)
-        test.equal(result, true)
-        test.end()
-      })
-  
-      registerTransferhandler.test('return an error when registering the transfer handler.', async (test) => {
-        try {
-          await Kafka.Consumer.createHandler(topicName, config, command)
-          Utility.transformGeneralTopicName.returns(topicName)
-          Utility.getKafkaConfig.throws(new Error())
-          await allTransferHandlers.registerGetTransferHandler()
-          test.fail('Error not thrown')
-          test.end()
-        } catch (e) {
-          test.pass('Error thrown')
-          test.end()
-        }
-      })
-      registerTransferhandler.end()
-    })
-  
-  
+  ConsumerTest.test('registerNotificationHandler should', async registerTests => {
+    try {
+      await Consumer.registerNotificationHandler()
+      registerTests.pass()
+      registerTests.end()
+    } catch (err) {
+      registerTests.fail()
+      registerTests.end()
+    }
+  })
 
-  
+  ConsumerTest.test('registerNotificationHandler should', async registerTests => {
+    try {
+      KafkaConsumer.prototype.constructor.throws(new Error())
+      KafkaConsumer.prototype.connect.throws(new Error())
+      await Consumer.registerNotificationHandler()
+      registerTests.fail()
+      registerTests.end()
+    } catch (err) {
+      registerTests.pass()
+      registerTests.end()
+    }
   })
 
   ConsumerTest.end()
