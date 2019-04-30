@@ -24,7 +24,9 @@
   },
   "scripts": {
     "start": "node app.js",
-    "test": "nyc mocha test/unit/**/*.test.js --timeout=4000",
+    "test": "npm run test:unit | faucet",
+    "test:unit": "tape 'test/unit/**/*.test.js'",
+    "test:xunit": "tape 'test/unit/**/*test.js' | tap-xunit",
     "test:coverage": "istanbul cover tape -- 'test/unit/**/*.test.js'"
   },
   "repository": {

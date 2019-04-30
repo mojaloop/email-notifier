@@ -137,8 +137,19 @@ Test('Consumer', ConsumerTest => {
       try {
         await Consumer.isConsumerAutoCommitEnabled(topicName)
         test.fail('Error not thrown!')
+        test.end()
       } catch (err) {
         test.pass()
+      }
+      test.end()
+    })
+
+    isConsumerAutoCommitEnabledTest.test('return result', async (test) => {
+      try {
+        let result = await Consumer.isConsumerAutoCommitEnabled('admin1')
+        test.ok(result, true, 'correct result')
+      } catch (err) {
+        test.fail()
       }
       test.end()
     })

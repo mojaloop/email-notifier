@@ -166,66 +166,66 @@ jobs:
           paths:
             - node_modules
 
-  # test-unit:
-  #   <<: *defaults_working_directory
-  #   <<: *defaults_docker_node
-  #   steps:
-  #     - checkout
-  #     - run:
-  #         name: Install general dependencies
-  #         command: *defaults_Dependencies
-  #     - run:
-  #         <<: *defaults_environment
-  #     - restore_cache:
-  #         key: dependency-cache-{{ checksum "CACHE_VERSION.txt" }}-{{ checksum "package.json" }}
-  #     - run:
-  #         name: Install tape, tapes and tap-xunit
-  #         command: npm install -g tape tapes tap-xunit
-  #     - run:
-  #         name: Create dir for test results
-  #         command: mkdir -p ./test/results
-  #     - run:
-  #         name: Execute unit tests
-  #         command: npm -s run test:xunit > ./test/results/tape.xml
-  #     - store_artifacts:
-  #         path: ./test/results
-  #         prefix: test
-  #     - store_test_results:
-  #         path: ./test/results
+  test-unit:
+    <<: *defaults_working_directory
+    <<: *defaults_docker_node
+    steps:
+      - checkout
+      - run:
+          name: Install general dependencies
+          command: *defaults_Dependencies
+      - run:
+          <<: *defaults_environment
+      - restore_cache:
+          key: dependency-cache-{{ checksum "CACHE_VERSION.txt" }}-{{ checksum "package.json" }}
+      - run:
+          name: Install tape, tapes and tap-xunit
+          command: npm install -g tape tapes tap-xunit
+      - run:
+          name: Create dir for test results
+          command: mkdir -p ./test/results
+      - run:
+          name: Execute unit tests
+          command: npm -s run test:xunit > ./test/results/tape.xml
+      - store_artifacts:
+          path: ./test/results
+          prefix: test
+      - store_test_results:
+          path: ./test/results
 
-  # test-coverage:
-  #   <<: *defaults_working_directory
-  #   <<: *defaults_docker_node
-  #   steps:
-  #     - checkout
-  #     - run:
-  #         name: Install general dependencies
-  #         command: *defaults_Dependencies
-  #     - run:
-  #         <<: *defaults_environment
-  #     - run:
-  #         name: Install AWS CLI dependencies
-  #         command: *defaults_awsCliDependencies
-  #     - restore_cache:
-  #         key: dependency-cache-{{ checksum "CACHE_VERSION.txt" }}-{{ checksum "package.json" }}
-  #     - run:
-  #         name: Execute code coverage check
-  #         command: npm -s run test:coverage-check
-  #     - store_artifacts:
-  #         path: coverage
-  #         prefix: test
-  #     - store_test_results:
-  #         path: coverage
-  #     - run:
-  #         name: Copy code coverage to SonarQube
-  #         command: |
-  #           if [ "${CIRCLE_BRANCH}" == "master" ];
-  #           then
-  #               echo "Sending lcov.info to SonarQube..."
-  #               aws s3 cp coverage/lcov.info $AWS_S3_DIR_SONARQUBE/central-ledger/lcov.info
-  #           else
-  #               echo "Not a release (env CIRCLE_BRANCH != 'master'), skipping sending lcov.info to SonarQube."
-  #           fi
+  test-coverage:
+    <<: *defaults_working_directory
+    <<: *defaults_docker_node
+    steps:
+      - checkout
+      - run:
+          name: Install general dependencies
+          command: *defaults_Dependencies
+      - run:
+          <<: *defaults_environment
+      - run:
+          name: Install AWS CLI dependencies
+          command: *defaults_awsCliDependencies
+      - restore_cache:
+          key: dependency-cache-{{ checksum "CACHE_VERSION.txt" }}-{{ checksum "package.json" }}
+      - run:
+          name: Execute code coverage check
+          command: npm -s run test:coverage-check
+      - store_artifacts:
+          path: coverage
+          prefix: test
+      - store_test_results:
+          path: coverage
+      - run:
+          name: Copy code coverage to SonarQube
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "master" ];
+            then
+                echo "Sending lcov.info to SonarQube..."
+                aws s3 cp coverage/lcov.info $AWS_S3_DIR_SONARQUBE/central-ledger/lcov.info
+            else
+                echo "Not a release (env CIRCLE_BRANCH != 'master'), skipping sending lcov.info to SonarQube."
+            fi
 
   # test-integration:
   #   machine: true
