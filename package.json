@@ -27,7 +27,8 @@
     "test": "npm run test:unit | faucet",
     "test:unit": "tape 'test/unit/**/*.test.js'",
     "test:xunit": "tape 'test/unit/**/*test.js' | tap-xunit",
-    "test:coverage": "istanbul cover tape -- 'test/unit/**/*.test.js'"
+    "test:coverage": "istanbul cover tape -- 'test/unit/**/*.test.js'",
+    "test:coverage-check": "npm run test:coverage && istanbul check-coverage"
   },
   "repository": {
     "type": "git",
