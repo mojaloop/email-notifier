@@ -9,7 +9,7 @@ RUN apk add --no-cache -t build-dependencies make gcc g++ python libtool autocon
     && npm config set unsafe-perm true \
     && npm install -g node-gyp
 
-COPY package.json package-lock.json* /opt/central-event-processor/
+COPY package.json package-lock.json* /opt/email-notifier/
 
 RUN npm install --production && \
   npm uninstall -g npm
