@@ -104,7 +104,7 @@ Test('nodeMailer unit tests (sendMail.js) : ', async sendMailTest => {
             'type': 'notification',
             'action': 'event',
             'createdAt': '2018-12-11T13:36:58.225Z',
-            'state': {'status': 'success', 'code': 0, 'description': 'action successful'}
+            'state': { 'status': 'success', 'code': 0, 'description': 'action successful' }
           },
           'protocol.createdAt': 1544535418447
         },
@@ -201,8 +201,9 @@ Test('nodeMailer unit tests (sendMail.js) : ', async sendMailTest => {
             'type': 'notification',
             'action': 'event',
             'createdAt': '2018-12-11T13:36:58.225Z',
-            'state': {'status': 'success', 'code': 0, 'description': 'action successful'}
-          }, 'protocol.createdAt': 1544535418447
+            'state': { 'status': 'success', 'code': 0, 'description': 'action successful' }
+          },
+          'protocol.createdAt': 1544535418447
         },
         'pp': ''
       },

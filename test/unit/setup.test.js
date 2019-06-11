@@ -65,7 +65,19 @@ Test('Setup test', async setupTest => {
       setupProxy = Proxyquire('../../src/setup', {
         'rxjs': RxStub,
         './observables': ObservablesStub,
-        'healthcheck-server': healthcheckStub,
+        '@mojaloop/central-services-shared': {
+          HealthCheck: {
+            HealthCheckEnums: {
+              serviceName: {
+                broker: 'broker'
+              }
+            },
+            HealthCheckServer: {
+              createHealthCheckServer: healthcheckStub,
+              defaultHealthHandler: () => console.log('mocked defaultHealthHandler')
+            }
+          }
+        },
         'rxjs/operators': operatorsStub,
         './lib/utility': UtilityStub,
         './lib/kafka/consumer': ConsumerStub
@@ -80,22 +92,14 @@ Test('Setup test', async setupTest => {
     sandbox.restore()
     t.end()
   })
-  let consumer
-  let statusFunc = ({ cpu, memory }) => {
-    if (consumer._status.running) return true
-    else return false
-  }
 
   await setupTest.test('setup should', async assert => {
     try {
       let result = await setupProxy.setup()
       assert.ok(result, 'Notifier setup finished')
       assert.ok(healthcheckStub.calledOnce, 'healthCheck initialized')
-      assert.ok(healthcheckStub.withArgs({
-        port: Config.get('PORT'),
-        path: '/health',
-        status: statusFunc
-      }))
+      assert.ok(healthcheckStub.withArgs(Config.get('PORT'), (r, h) => {}))
+
       assert.ok(RxStub.Observable.create.calledOnce, 'Observable created')
       assert.ok(operatorsStub.filter.calledOnce, 'Filter created')
       assert.end()
@@ -104,5 +108,6 @@ Test('Setup test', async setupTest => {
       assert.end()
     }
   })
+
   setupTest.end()
 })

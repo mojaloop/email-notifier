@@ -1,3 +1,4 @@
+
 /*****
  License
  --------------
@@ -17,14 +18,39 @@
  optionally within square brackets <email>.
  * Gates Foundation
  - Name Surname <name.surname@gatesfoundation.com>
- * Valentin Genev <valentin.genev@modusbox.com>
- * Deon Botha <deon.botha@modusbox.com>
+
+ * Lewis Daly <lewis@vesselstech.com>
  --------------
  ******/
-
 'use strict'
 
+const { statusEnum, serviceName } = require('@mojaloop/central-services-shared').HealthCheck.HealthCheckEnums
+const Logger = require('@mojaloop/central-services-shared').Logger
+
+const Consumer = require('../kafka/consumer')
+
+/**
+ * @function getSubServiceHealthBroker
+ *
+ * @description Gets the health for the broker
+ * @returns Promise<SubServiceHealth> The SubService health object for the broker
+ */
+const getSubServiceHealthBroker = async () => {
+  const consumerTopics = Consumer.getListOfTopics()
+  let status = statusEnum.OK
+  try {
+    await Promise.all(consumerTopics.map(t => Consumer.isConsumerConnected(t)))
+  } catch (err) {
+    Logger.debug(`HealthCheck.getSubServiceHealthBroker failed with error ${err.message}.`)
+    status = statusEnum.DOWN
+  }
+
+  return {
+    name: serviceName.broker,
+    status
+  }
+}
+
 module.exports = {
-  actionObservable: require('./actions').actionObservable
-// rulesObservable: require('./rules').rulesObservable
+  getSubServiceHealthBroker
 }
