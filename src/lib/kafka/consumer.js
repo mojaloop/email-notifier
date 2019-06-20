@@ -131,8 +131,6 @@ const registerNotificationHandler = async () => {
     }
     NotificationHandler.config.rdkafkaConf['client.id'] = NotificationHandler.topicName
     await createHandler(NotificationHandler.topicName, NotificationHandler.config)
-
-    // Check to see if we are connected
     await isConsumerConnected(NotificationHandler.topicName)
 
     return true
