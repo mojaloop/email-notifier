@@ -42,7 +42,7 @@ The email settings are:
   }
 ```
 
-Those can be passed as the following environmental variables: 
+Those can be passed as the following environment variables: 
 
 ```
 {

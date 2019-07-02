@@ -32,11 +32,11 @@ const Rx = require('rxjs')
 const { filter, flatMap } = require('rxjs/operators')
 const Logger = require('@mojaloop/central-services-shared').Logger
 const HealthCheck = require('@mojaloop/central-services-shared').HealthCheck.HealthCheck
+const { createHealthCheckServer, defaultHealthHandler } = require('@mojaloop/central-services-health')
 
 const Consumer = require('./lib/kafka/consumer')
 const Utility = require('./lib/utility')
-const { createHealthCheckServer, defaultHealthHandler } = require('./lib/healthCheck/HealthCheckServer')
-const { getSubServiceHealthBroker } = require('./lib/healthCheck/subServiceHealth')
+const { getSubServiceHealthBroker, getSubServiceHealthSMTP } = require('./lib/healthCheck/subServiceHealth')
 const packageJson = require('../package.json')
 const Observables = require('./observables')
 const Config = require('./lib/config')
@@ -48,7 +48,8 @@ const setup = async () => {
   const consumer = Consumer.getConsumer(topicName)
 
   const healthCheck = new HealthCheck(packageJson, [
-    getSubServiceHealthBroker
+    getSubServiceHealthBroker,
+    getSubServiceHealthSMTP
   ])
   await createHealthCheckServer(Config.get('PORT'), defaultHealthHandler(healthCheck))
 

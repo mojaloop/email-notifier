@@ -39,7 +39,7 @@ const getSubServiceHealthBroker = async () => {
   const consumerTopics = Consumer.getListOfTopics()
   let status = statusEnum.OK
   try {
-    await Promise.all(consumerTopics.map(t => Consumer.isConsumerConnected(t)))
+    await Promise.all(consumerTopics.map(t => Consumer.isConnected(t)))
   } catch (err) {
     Logger.debug(`HealthCheck.getSubServiceHealthBroker failed with error ${err.message}.`)
     status = statusEnum.DOWN
@@ -51,6 +51,31 @@ const getSubServiceHealthBroker = async () => {
   }
 }
 
+/**
+ * @function getSubServiceHealthSMTP
+ *
+ * @description Gets the health for the SMTP Server
+ * @returns Promise<SubServiceHealth> The SubService health object for the broker
+ */
+const getSubServiceHealthSMTP = async () => {
+  const consumerTopics = Consumer.getListOfTopics()
+  let status = statusEnum.OK
+  try {
+    //TODO: check the service health with SMTP
+
+
+  } catch (err) {
+    Logger.debug(`HealthCheck.getSubServiceHealthSMTP failed with error ${err.message}.`)
+    status = statusEnum.DOWN
+  }
+
+  return {
+    name: serviceName.smtp,
+    status
+  }
+}
+
 module.exports = {
-  getSubServiceHealthBroker
+  getSubServiceHealthBroker,
+  getSubServiceHealthSMTP
 }
