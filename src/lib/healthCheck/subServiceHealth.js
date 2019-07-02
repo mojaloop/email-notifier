@@ -26,6 +26,7 @@
 
 const { statusEnum, serviceName } = require('@mojaloop/central-services-shared').HealthCheck.HealthCheckEnums
 const Logger = require('@mojaloop/central-services-shared').Logger
+const { Mailer } = require('../../nodeMailer/sendMail')
 
 const Consumer = require('../kafka/consumer')
 
@@ -54,23 +55,26 @@ const getSubServiceHealthBroker = async () => {
 /**
  * @function getSubServiceHealthSMTP
  *
- * @description Gets the health for the SMTP Server
+ * @description Gets the health for the SMTP Server. Calls the verify() method on the
+ *  nodemailer transport to achieve this.
+ * 
  * @returns Promise<SubServiceHealth> The SubService health object for the broker
  */
 const getSubServiceHealthSMTP = async () => {
-  const consumerTopics = Consumer.getListOfTopics()
+  const mailer = new Mailer()
   let status = statusEnum.OK
+
   try {
-    //TODO: check the service health with SMTP
-
-
+    await mailer.transporter.verify()
   } catch (err) {
     Logger.debug(`HealthCheck.getSubServiceHealthSMTP failed with error ${err.message}.`)
     status = statusEnum.DOWN
   }
 
   return {
-    name: serviceName.smtp,
+    //TODO: change to proper enum
+    // name: serviceName.smtp,
+    name: 'smtpServer',
     status
   }
 }

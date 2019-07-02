@@ -41,13 +41,12 @@ class Mailer {
     return new Promise((resolve, reject) => {
       this.transporter.sendMail(message, (error, info) => {
         if (error) {
-          reject(error)
-        } else {
-          console.log('else hit')
-          resolve({
-            emailSent: info.response
-          })
-        }
+          return reject(error)
+        } 
+            
+        return resolve({
+          emailSent: info.response
+        })
       })
     })
   }

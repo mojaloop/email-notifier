@@ -32,7 +32,8 @@ const Rx = require('rxjs')
 const { filter, flatMap } = require('rxjs/operators')
 const Logger = require('@mojaloop/central-services-shared').Logger
 const HealthCheck = require('@mojaloop/central-services-shared').HealthCheck.HealthCheck
-const { createHealthCheckServer, defaultHealthHandler } = require('@mojaloop/central-services-health')
+//TODO: change to mojaloop
+const { createHealthCheckServer, defaultHealthHandler } = require('@vesselstech/central-services-health')
 
 const Consumer = require('./lib/kafka/consumer')
 const Utility = require('./lib/utility')
