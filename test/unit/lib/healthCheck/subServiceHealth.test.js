@@ -2,11 +2,13 @@
 
 const Test = require('tapes')(require('tape'))
 const Sinon = require('sinon')
+const Nodemailer = require('nodemailer')
 const { statusEnum, serviceName } = require('@mojaloop/central-services-shared').HealthCheck.HealthCheckEnums
 
 const Consumer = require('../../../../src/lib/kafka/consumer')
 const {
-  getSubServiceHealthBroker
+  getSubServiceHealthBroker,
+  getSubServiceHealthSMTP
 } = require('../../../../src/lib/healthCheck/subServiceHealth')
 
 Test('SubServiceHealth test', function (subServiceHealthTest) {
@@ -16,12 +18,50 @@ Test('SubServiceHealth test', function (subServiceHealthTest) {
     sandbox = Sinon.createSandbox()
     sandbox.stub(Consumer, 'getListOfTopics')
     sandbox.stub(Consumer, 'isConnected')
+    sandbox.stub(Nodemailer, 'createTransport')
+    
     t.end()
   })
-
+  
   subServiceHealthTest.afterEach(t => {
     sandbox.restore()
     t.end()
+  })
+
+  subServiceHealthTest.test('getSubServiceHealthSMTP', smtpTest => {
+    smtpTest.test('passes when transporter.verify() suceeds', async test => {
+      // Arrange
+      const verify = sandbox.stub()
+      Nodemailer.createTransport.returns({verify})
+      //TODO: replace once the enums are through
+      const expected = { name: 'smtpServer', status: statusEnum.OK }
+
+      // Act
+      const result = await getSubServiceHealthSMTP()
+
+      // Assert
+      test.deepEqual(result, expected, 'getSubServiceHealthSMTP should match expected result')
+      test.ok(verify.called, 'transporter.verify has been called')
+      test.end()
+    })
+
+    smtpTest.test('fails when transporter.verify() fails', async test => {
+      // Arrange
+      const verify = sandbox.stub().throws(new Error('Authentication failed'))
+      Nodemailer.createTransport.returns({verify})
+      //TODO: replace once the enums are through
+      const expected = { name: 'smtpServer', status: statusEnum.DOWN }
+
+      // Act
+      const result = await getSubServiceHealthSMTP()
+
+      // Assert
+      test.deepEqual(result, expected, 'getSubServiceHealthSMTP should match expected result')
+      test.ok(verify.called, 'transporter.verify has been called')
+      test.end()
+    })
+
+    smtpTest.end()
   })
 
   subServiceHealthTest.test('getSubServiceHealthBroker', brokerTest => {
