@@ -72,9 +72,7 @@ const getSubServiceHealthSMTP = async () => {
   }
 
   return {
-    //TODO: change to proper enum
-    // name: serviceName.smtp,
-    name: 'smtpServer',
+    name: serviceName.smtpServer,
     status
   }
 }

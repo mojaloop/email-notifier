@@ -25,6 +25,7 @@ Test('SubServiceHealth test', function (subServiceHealthTest) {
   
   subServiceHealthTest.afterEach(t => {
     sandbox.restore()
+
     t.end()
   })
 
@@ -33,8 +34,7 @@ Test('SubServiceHealth test', function (subServiceHealthTest) {
       // Arrange
       const verify = sandbox.stub()
       Nodemailer.createTransport.returns({verify})
-      //TODO: replace once the enums are through
-      const expected = { name: 'smtpServer', status: statusEnum.OK }
+      const expected = { name: serviceName.smtpServer, status: statusEnum.OK }
 
       // Act
       const result = await getSubServiceHealthSMTP()
@@ -49,8 +49,7 @@ Test('SubServiceHealth test', function (subServiceHealthTest) {
       // Arrange
       const verify = sandbox.stub().throws(new Error('Authentication failed'))
       Nodemailer.createTransport.returns({verify})
-      //TODO: replace once the enums are through
-      const expected = { name: 'smtpServer', status: statusEnum.DOWN }
+      const expected = { name: serviceName.smtpServer, status: statusEnum.DOWN }
 
       // Act
       const result = await getSubServiceHealthSMTP()

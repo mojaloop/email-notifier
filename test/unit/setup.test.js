@@ -14,7 +14,8 @@ Test('Setup test', async setupTest => {
     UtilityStub,
     RxStub,
     ObservablesStub,
-    healthcheckStub
+    createHealthCheckServerStub,
+    HealthCheckConstructorStub
 
   const topicName = 'test-topic'
   setupTest.beforeEach(t => {
@@ -50,7 +51,14 @@ Test('Setup test', async setupTest => {
         actionObservable: sandbox.stub()
       }
 
-      healthcheckStub = sandbox.stub().returns()
+      HealthCheckConstructorStub = sandbox.stub()
+      healthCheckStub = class HealthCheckStubbed {
+        constructor() {
+          HealthCheckConstructorStub()
+        }
+      }
+
+      createHealthCheckServerStub = sandbox.stub().returns()
 
       UtilityStub = {
         trantransformGeneralTopicName: sandbox.stub().returns(topicName)
@@ -65,17 +73,18 @@ Test('Setup test', async setupTest => {
       setupProxy = Proxyquire('../../src/setup', {
         'rxjs': RxStub,
         './observables': ObservablesStub,
+        '@mojaloop/central-services-health': {
+          createHealthCheckServer: createHealthCheckServerStub,
+          defaultHealthHandler: () => {}
+        },
         '@mojaloop/central-services-shared': {
           HealthCheck: {
+            HealthCheck: healthCheckStub,
             HealthCheckEnums: {
               serviceName: {
                 broker: 'broker'
               }
             },
-            HealthCheckServer: {
-              createHealthCheckServer: healthcheckStub,
-              defaultHealthHandler: () => console.log('mocked defaultHealthHandler')
-            }
           }
         },
         'rxjs/operators': operatorsStub,
@@ -97,8 +106,9 @@ Test('Setup test', async setupTest => {
     try {
       let result = await setupProxy.setup()
       assert.ok(result, 'Notifier setup finished')
-      assert.ok(healthcheckStub.calledOnce, 'healthCheck initialized')
-      assert.ok(healthcheckStub.withArgs(Config.get('PORT'), (r, h) => {}))
+      assert.ok(createHealthCheckServerStub.calledOnce, 'healthCheck initialized')
+      assert.ok(createHealthCheckServerStub.withArgs(Config.get('PORT'), (r, h) => {}))
+      assert.ok(HealthCheckConstructorStub.calledOnce, 'HealthCheck constructor called')
 
       assert.ok(RxStub.Observable.create.calledOnce, 'Observable created')
       assert.ok(operatorsStub.filter.calledOnce, 'Filter created')
