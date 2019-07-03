@@ -42,8 +42,8 @@ class Mailer {
       this.transporter.sendMail(message, (error, info) => {
         if (error) {
           return reject(error)
-        } 
-            
+        }
+
         return resolve({
           emailSent: info.response
         })

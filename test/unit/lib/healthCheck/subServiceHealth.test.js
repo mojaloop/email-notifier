@@ -19,10 +19,10 @@ Test('SubServiceHealth test', function (subServiceHealthTest) {
     sandbox.stub(Consumer, 'getListOfTopics')
     sandbox.stub(Consumer, 'isConnected')
     sandbox.stub(Nodemailer, 'createTransport')
-    
+
     t.end()
   })
-  
+
   subServiceHealthTest.afterEach(t => {
     sandbox.restore()
 
@@ -33,7 +33,7 @@ Test('SubServiceHealth test', function (subServiceHealthTest) {
     smtpTest.test('passes when transporter.verify() suceeds', async test => {
       // Arrange
       const verify = sandbox.stub()
-      Nodemailer.createTransport.returns({verify})
+      Nodemailer.createTransport.returns({ verify })
       const expected = { name: serviceName.smtpServer, status: statusEnum.OK }
 
       // Act
@@ -48,7 +48,7 @@ Test('SubServiceHealth test', function (subServiceHealthTest) {
     smtpTest.test('fails when transporter.verify() fails', async test => {
       // Arrange
       const verify = sandbox.stub().throws(new Error('Authentication failed'))
-      Nodemailer.createTransport.returns({verify})
+      Nodemailer.createTransport.returns({ verify })
       const expected = { name: serviceName.smtpServer, status: statusEnum.DOWN }
 
       // Act

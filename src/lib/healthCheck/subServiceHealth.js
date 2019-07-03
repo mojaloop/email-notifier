@@ -57,7 +57,7 @@ const getSubServiceHealthBroker = async () => {
  *
  * @description Gets the health for the SMTP Server. Calls the verify() method on the
  *  nodemailer transport to achieve this.
- * 
+ *
  * @returns Promise<SubServiceHealth> The SubService health object for the broker
  */
 const getSubServiceHealthSMTP = async () => {

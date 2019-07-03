@@ -52,8 +52,8 @@ Test('Setup test', async setupTest => {
       }
 
       HealthCheckConstructorStub = sandbox.stub()
-      healthCheckStub = class HealthCheckStubbed {
-        constructor() {
+      const mockHealthCheck = class HealthCheckStubbed {
+        constructor () {
           HealthCheckConstructorStub()
         }
       }
@@ -79,12 +79,12 @@ Test('Setup test', async setupTest => {
         },
         '@mojaloop/central-services-shared': {
           HealthCheck: {
-            HealthCheck: healthCheckStub,
+            HealthCheck: mockHealthCheck,
             HealthCheckEnums: {
               serviceName: {
                 broker: 'broker'
               }
-            },
+            }
           }
         },
         'rxjs/operators': operatorsStub,
