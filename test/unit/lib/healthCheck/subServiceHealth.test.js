@@ -2,14 +2,16 @@
 
 const Test = require('tapes')(require('tape'))
 const Sinon = require('sinon')
-const Nodemailer = require('nodemailer')
 const { statusEnum, serviceName } = require('@mojaloop/central-services-shared').HealthCheck.HealthCheckEnums
 
+const Mailer = require('../../../../src/nodeMailer/sendMail')
 const Consumer = require('../../../../src/lib/kafka/consumer')
 const {
   getSubServiceHealthBroker,
   getSubServiceHealthSMTP
 } = require('../../../../src/lib/healthCheck/subServiceHealth')
+
+const mailer = Mailer.sharedInstance()
 
 Test('SubServiceHealth test', function (subServiceHealthTest) {
   let sandbox
@@ -18,7 +20,7 @@ Test('SubServiceHealth test', function (subServiceHealthTest) {
     sandbox = Sinon.createSandbox()
     sandbox.stub(Consumer, 'getListOfTopics')
     sandbox.stub(Consumer, 'isConnected')
-    sandbox.stub(Nodemailer, 'createTransport')
+    sandbox.stub(mailer.transporter, 'verify')
 
     t.end()
   })
@@ -32,8 +34,7 @@ Test('SubServiceHealth test', function (subServiceHealthTest) {
   subServiceHealthTest.test('getSubServiceHealthSMTP', smtpTest => {
     smtpTest.test('passes when transporter.verify() suceeds', async test => {
       // Arrange
-      const verify = sandbox.stub()
-      Nodemailer.createTransport.returns({ verify })
+      mailer.transporter.verify.resolves()
       const expected = { name: serviceName.smtpServer, status: statusEnum.OK }
 
       // Act
@@ -41,14 +42,12 @@ Test('SubServiceHealth test', function (subServiceHealthTest) {
 
       // Assert
       test.deepEqual(result, expected, 'getSubServiceHealthSMTP should match expected result')
-      test.ok(verify.called, 'transporter.verify has been called')
       test.end()
     })
 
     smtpTest.test('fails when transporter.verify() fails', async test => {
       // Arrange
-      const verify = sandbox.stub().throws(new Error('Authentication failed'))
-      Nodemailer.createTransport.returns({ verify })
+      mailer.transporter.verify.throws(new Error('Authentication failed'))
       const expected = { name: serviceName.smtpServer, status: statusEnum.DOWN }
 
       // Act
@@ -56,7 +55,6 @@ Test('SubServiceHealth test', function (subServiceHealthTest) {
 
       // Assert
       test.deepEqual(result, expected, 'getSubServiceHealthSMTP should match expected result')
-      test.ok(verify.called, 'transporter.verify has been called')
       test.end()
     })
 

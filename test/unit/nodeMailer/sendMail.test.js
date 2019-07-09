@@ -26,7 +26,7 @@
 
 const Test = require('tapes')(require('tape'))
 const Sinon = require('sinon')
-const Mailer = require('../../../src/nodeMailer/sendMail').Mailer
+const Mailer = require('../../../src/nodeMailer/sendMail')
 const nodemailer = require('nodemailer')
 const Config = require('../../../src/lib/config')
 

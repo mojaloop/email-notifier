@@ -19,6 +19,7 @@
  - Name Surname <name.surname@gatesfoundation.com>
  * Rajiv Mothilal <rajiv.mothilal@modusbox.com>
  * Miguel de Barros <miguel.debarros@modusbox.com>
+ * Lewis Daly <lewis@vesselstech.com>
  --------------
  ******/
 
@@ -32,10 +33,20 @@ const Nodemailer = require('nodemailer')
 const Config = require('../lib/config')
 const MailOptions = Config.get('emailSettings').smtpConfig
 
+let sharedInstance = null
+
 class Mailer {
   constructor (options = MailOptions) {
     this.transporter = Nodemailer.createTransport(options)
   }
+
+  static sharedInstance() {
+    if (!sharedInstance) {
+      sharedInstance = new Mailer()
+    }
+
+    return sharedInstance
+  } 
 
   async sendMailMessage (message) {
     return new Promise((resolve, reject) => {
@@ -84,4 +95,4 @@ class Mailer {
 //   })
 // }
 
-module.exports = { Mailer }
+module.exports = Mailer

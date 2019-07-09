@@ -9,7 +9,7 @@ const Test = require('tapes')(require('tape'))
 // const KafkaConsumer = require('@mojaloop/central-services-stream').Kafka.Consumer
 // const Rx = require('rxjs')
 const { filter, switchMap } = require('rxjs/operators')
-const Mailer = require('../../src/nodeMailer/sendMail').Mailer
+const Mailer = require('../../src/nodeMailer/sendMail')
 const Config = require('../../src/lib/config')
 
 const Observables = require('../../src/observables/actions')

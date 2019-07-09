@@ -26,9 +26,11 @@
 
 const { statusEnum, serviceName } = require('@mojaloop/central-services-shared').HealthCheck.HealthCheckEnums
 const Logger = require('@mojaloop/central-services-shared').Logger
-const { Mailer } = require('../../nodeMailer/sendMail')
+const Mailer = require('../../nodeMailer/sendMail')
 
 const Consumer = require('../kafka/consumer')
+
+const mailer = Mailer.sharedInstance()
 
 /**
  * @function getSubServiceHealthBroker
@@ -61,7 +63,6 @@ const getSubServiceHealthBroker = async () => {
  * @returns Promise<SubServiceHealth> The SubService health object for the broker
  */
 const getSubServiceHealthSMTP = async () => {
-  const mailer = new Mailer()
   let status = statusEnum.OK
 
   try {
