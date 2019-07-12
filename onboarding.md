@@ -61,7 +61,7 @@ npm install
 
 ##  3. <a name='RunningLocally'></a>Running Locally (with dependencies inside of docker)
 
-In this method, we will run core dependencies (`mongodb`, `kafka`) inside of docker containers, while running the `email-notifier` server on your local machine.
+In this method, we will run core dependencies (`kafka`) inside of docker containers, while running the `email-notifier` server on your local machine.
 
 > Alternatively, you can run the `email-notifier` inside of `docker-compose` with the rest of the dependencies to make the setup a little easier: [Running Inside Docker](#RunningInsideDocker).
 
@@ -69,7 +69,7 @@ In this method, we will run core dependencies (`mongodb`, `kafka`) inside of doc
 
 ```bash
 # start the dependencies inside of docker
-docker-compose up mongo kafka
+docker-compose up kafka
 
 ```
 
@@ -138,9 +138,6 @@ We use `npm` scripts as a common entrypoint for running the tests.
 # unit tests:
 npm run test:unit
 
-# integration tests
-npm run test:integration
-
 # check test coverage
 npm run test:coverage
 ```
@@ -153,16 +150,6 @@ npm run test:coverage
 #### Prerequisites:
 * `ml-api-adapter` and `central-ledger` services running (follow the [Running Inside Docker guide](#RunningInsideDocker) to get these services up and running)
 * _Optionally_, run `central-timeout` , `cental-settlement` as well.
-
-
-#### Running Example Requests
-
-1. Import the **Mojaloop v0.1 draft** collection, and open `API Examples` > `mojaloop v1.0` > `6.a. Transfer Prepare Request`
-2. Click **Send**
-3. If you get a valid response, continue to the next step, otherwise it reveals an issue in your configuration. 
-4. Select the `7.a. Transfer Fulfil Request` and perform a corresponding fulfilment request
-5. You can check the database to see the transfer state, status changes, positions and other such information. After this if everything looks good, you should be ready to go.
-
 
 ##  6. <a name='CommonErrorsFAQs'></a>Common Errors/FAQs
 
