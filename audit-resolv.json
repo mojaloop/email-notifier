@@ -1,0 +1,122 @@
+{
+  "1012|nodemon>chokidar>anymatch>micromatch>braces>snapdragon>base>cache-base>set-value": {
+    "fix": 1
+  },
+  "1012|nodemon>chokidar>anymatch>micromatch>extglob>expand-brackets>snapdragon>base>cache-base>set-value": {
+    "fix": 1
+  },
+  "1012|nodemon>chokidar>anymatch>micromatch>extglob>snapdragon>base>cache-base>set-value": {
+    "fix": 1
+  },
+  "1012|nodemon>chokidar>anymatch>micromatch>nanomatch>snapdragon>base>cache-base>set-value": {
+    "fix": 1
+  },
+  "1012|nodemon>chokidar>anymatch>micromatch>snapdragon>base>cache-base>set-value": {
+    "fix": 1
+  },
+  "1012|nodemon>chokidar>braces>snapdragon>base>cache-base>set-value": {
+    "fix": 1
+  },
+  "1012|nodemon>chokidar>readdirp>micromatch>braces>snapdragon>base>cache-base>set-value": {
+    "fix": 1
+  },
+  "1012|nodemon>chokidar>readdirp>micromatch>extglob>expand-brackets>snapdragon>base>cache-base>set-value": {
+    "fix": 1
+  },
+  "1012|nodemon>chokidar>readdirp>micromatch>extglob>snapdragon>base>cache-base>set-value": {
+    "fix": 1
+  },
+  "1012|nodemon>chokidar>readdirp>micromatch>nanomatch>snapdragon>base>cache-base>set-value": {
+    "fix": 1
+  },
+  "1012|nodemon>chokidar>readdirp>micromatch>snapdragon>base>cache-base>set-value": {
+    "fix": 1
+  },
+  "1012|nodemon>chokidar>anymatch>micromatch>braces>snapdragon>base>cache-base>union-value>set-value": {
+    "fix": 1
+  },
+  "1012|nodemon>chokidar>anymatch>micromatch>extglob>expand-brackets>snapdragon>base>cache-base>union-value>set-value": {
+    "fix": 1
+  },
+  "1012|nodemon>chokidar>anymatch>micromatch>extglob>snapdragon>base>cache-base>union-value>set-value": {
+    "fix": 1
+  },
+  "1012|nodemon>chokidar>anymatch>micromatch>nanomatch>snapdragon>base>cache-base>union-value>set-value": {
+    "fix": 1
+  },
+  "1012|nodemon>chokidar>anymatch>micromatch>snapdragon>base>cache-base>union-value>set-value": {
+    "fix": 1
+  },
+  "1012|nodemon>chokidar>braces>snapdragon>base>cache-base>union-value>set-value": {
+    "fix": 1
+  },
+  "1012|nodemon>chokidar>readdirp>micromatch>braces>snapdragon>base>cache-base>union-value>set-value": {
+    "fix": 1
+  },
+  "1012|nodemon>chokidar>readdirp>micromatch>extglob>expand-brackets>snapdragon>base>cache-base>union-value>set-value": {
+    "fix": 1
+  },
+  "1012|nodemon>chokidar>readdirp>micromatch>extglob>snapdragon>base>cache-base>union-value>set-value": {
+    "fix": 1
+  },
+  "1012|nodemon>chokidar>readdirp>micromatch>nanomatch>snapdragon>base>cache-base>union-value>set-value": {
+    "fix": 1
+  },
+  "1012|nodemon>chokidar>readdirp>micromatch>snapdragon>base>cache-base>union-value>set-value": {
+    "fix": 1
+  },
+  "1013|nodemon>chokidar>anymatch>micromatch>braces>snapdragon>base>mixin-deep": {
+    "fix": 1
+  },
+  "1013|nodemon>chokidar>anymatch>micromatch>extglob>expand-brackets>snapdragon>base>mixin-deep": {
+    "fix": 1
+  },
+  "1013|nodemon>chokidar>anymatch>micromatch>extglob>snapdragon>base>mixin-deep": {
+    "fix": 1
+  },
+  "1013|nodemon>chokidar>anymatch>micromatch>nanomatch>snapdragon>base>mixin-deep": {
+    "fix": 1
+  },
+  "1013|nodemon>chokidar>anymatch>micromatch>snapdragon>base>mixin-deep": {
+    "fix": 1
+  },
+  "1013|nodemon>chokidar>braces>snapdragon>base>mixin-deep": {
+    "fix": 1
+  },
+  "1013|nodemon>chokidar>readdirp>micromatch>braces>snapdragon>base>mixin-deep": {
+    "fix": 1
+  },
+  "1013|nodemon>chokidar>readdirp>micromatch>extglob>expand-brackets>snapdragon>base>mixin-deep": {
+    "fix": 1
+  },
+  "1013|nodemon>chokidar>readdirp>micromatch>extglob>snapdragon>base>mixin-deep": {
+    "fix": 1
+  },
+  "1013|nodemon>chokidar>readdirp>micromatch>nanomatch>snapdragon>base>mixin-deep": {
+    "fix": 1
+  },
+  "1013|nodemon>chokidar>readdirp>micromatch>snapdragon>base>mixin-deep": {
+    "fix": 1
+  },
+  "566|istanbul-coveralls>coveralls>request>hawk>boom>hoek": {
+    "ignore": 1
+  },
+  "566|istanbul-coveralls>coveralls>request>hawk>cryptiles>boom>hoek": {
+    "ignore": 1
+  },
+  "566|istanbul-coveralls>coveralls>request>hawk>hoek": {
+    "ignore": 1
+  },
+  "566|istanbul-coveralls>coveralls>request>hawk>sntp>hoek": {
+    "ignore": 1
+  },
+  "788|istanbul-coveralls>coveralls>js-yaml": {
+    "ignore": 1
+  },
+  "813|istanbul-coveralls>coveralls>js-yaml": {
+    "ignore": 1
+  },
+  "598|istanbul-coveralls>coveralls>request>tunnel-agent": {
+    "ignore": 1
+  }
+}
