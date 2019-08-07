@@ -1,7 +1,7 @@
 {
   "name": "email-notifier",
-  "version": "7.2.0",
-  "description": "email notifier to monitor the notificaion kafka topic and send emails.",
+  "version": "7.2.1",
+  "description": "An email notifier to monitor the notification kafka topic and send emails.",
   "main": "app.js",
   "dependencies": {
     "@hapi/boom": "7.4.2",
