@@ -9,7 +9,7 @@ const Test = require('tapes')(require('tape'))
 // const KafkaConsumer = require('@mojaloop/central-services-stream').Kafka.Consumer
 // const Rx = require('rxjs')
 const { filter, switchMap } = require('rxjs/operators')
-const Mailer = require('../../src/nodeMailer/sendMail').Mailer
+const Mailer = require('../../src/nodeMailer/sendMail')
 const Config = require('../../src/lib/config')
 
 const Observables = require('../../src/observables/actions')
@@ -81,8 +81,9 @@ Test('Test the action observables Setup', marbles((m, t) => {
           'type': 'notification',
           'action': 'event',
           'createdAt': '2018-12-11T13:36:58.225Z',
-          'state': {'status': 'success', 'code': 0, 'description': 'action successful'}
-        }, 'protocol.createdAt': 1544535418447
+          'state': { 'status': 'success', 'code': 0, 'description': 'action successful' }
+        },
+        'protocol.createdAt': 1544535418447
       },
       'pp': ''
     },
@@ -109,13 +110,13 @@ Test('Test the action observables Setup', marbles((m, t) => {
     }
   }
 
-  const source =   m.cold('-a', inputs) // topic observable
-  const subs =            '^a'
+  const source = m.cold('-a', inputs) // topic observable
+  const subs = '^a'
   const expected = m.cold('-r', outputs)
 
   const destination = source
-  .pipe(filter(data => data.value.from === hubName),
-  switchMap(Observables.actionObservable))
+    .pipe(filter(data => data.value.from === hubName),
+      switchMap(Observables.actionObservable))
 
   // const subscription = destination.subscribe()
   m.expect(source).toHaveSubscriptions(subs)
@@ -124,28 +125,28 @@ Test('Test the action observables Setup', marbles((m, t) => {
   t.end()
 })
 
-) 
+)
 
-  // ?=> {
-  // let sandbox
-  // let ConsumerStub
-  // let UtilityStub
-  // let LoggerStub
-  // let RxStub
-  // let filterStub
-  // let switchMapStub
-  // let ObservablesStub
-  // let healthcheckStub
+// ?=> {
+// let sandbox
+// let ConsumerStub
+// let UtilityStub
+// let LoggerStub
+// let RxStub
+// let filterStub
+// let switchMapStub
+// let ObservablesStub
+// let healthcheckStub
 
-  // setupTest.beforeEach(t => {
-  //   sandbox = Sinon.createSandbox()
-  //   sandbox.stub(KafkaConsumer.prototype, 'constructor').resolves()
-  //   sandbox.stub(KafkaConsumer.prototype, 'connect').resolves()
-  //   sandbox.stub(KafkaConsumer.prototype, 'consume').resolves()
-  //   sandbox.stub(KafkaConsumer.prototype, 'commitMessageSync').resolves()
-  //   sandbox.stub(Kafka.Consumer, 'getConsumer').returns({
-  //     commitMessageSync: async function () { return true }
-  //   })
-  //   sandbox.stub(Rx.prototype, 'Observable')
-  // })
+// setupTest.beforeEach(t => {
+//   sandbox = Sinon.createSandbox()
+//   sandbox.stub(KafkaConsumer.prototype, 'constructor').resolves()
+//   sandbox.stub(KafkaConsumer.prototype, 'connect').resolves()
+//   sandbox.stub(KafkaConsumer.prototype, 'consume').resolves()
+//   sandbox.stub(KafkaConsumer.prototype, 'commitMessageSync').resolves()
+//   sandbox.stub(Kafka.Consumer, 'getConsumer').returns({
+//     commitMessageSync: async function () { return true }
+//   })
+//   sandbox.stub(Rx.prototype, 'Observable')
+// })
 // })

@@ -28,13 +28,17 @@
  * @module src/setup
  */
 
-const Consumer = require('./lib/kafka/consumer')
-const Utility = require('./lib/utility')
-const Logger = require('@mojaloop/central-services-shared').Logger
 const Rx = require('rxjs')
 const { filter, flatMap } = require('rxjs/operators')
+const Logger = require('@mojaloop/central-services-shared').Logger
+const HealthCheck = require('@mojaloop/central-services-shared').HealthCheck.HealthCheck
+const { createHealthCheckServer, defaultHealthHandler } = require('@mojaloop/central-services-health')
+
+const Consumer = require('./lib/kafka/consumer')
+const Utility = require('./lib/utility')
+const { getSubServiceHealthBroker, getSubServiceHealthSMTP } = require('./lib/healthCheck/subServiceHealth')
+const packageJson = require('../package.json')
 const Observables = require('./observables')
-const createHealtcheck = require('healthcheck-server')
 const Config = require('./lib/config')
 
 const setup = async () => {
@@ -43,14 +47,11 @@ const setup = async () => {
   const topicName = Utility.transformGeneralTopicName(Utility.ENUMS.NOTIFICATION, Utility.ENUMS.EVENT)
   const consumer = Consumer.getConsumer(topicName)
 
-  createHealtcheck({
-    port: Config.get('PORT'),
-    path: '/health',
-    status: ({ cpu, memory }) => {
-      if (consumer._status.running) return true
-      else return false
-    }
-  })
+  const healthCheck = new HealthCheck(packageJson, [
+    getSubServiceHealthBroker,
+    getSubServiceHealthSMTP
+  ])
+  await createHealthCheckServer(Config.get('PORT'), defaultHealthHandler(healthCheck))
 
   const topicObservable = Rx.Observable.create((observer) => {
     consumer.on('message', async (data) => {

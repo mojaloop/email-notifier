@@ -25,7 +25,7 @@
 'use strict'
 
 const Test = require('tapes')(require('tape'))
-const Email = require('../../../src/nodeMailer/sendMail').Mailer
+const Email = require('../../../src/nodeMailer/sendMail')
 const Sinon = require('sinon')
 const ActionObservable = require('../../../src/observables/actions').actionObservable
 const Config = require('../../../src/lib/config')

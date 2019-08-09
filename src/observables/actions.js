@@ -28,8 +28,9 @@ const Rx = require('rxjs')
 const Logger = require('@mojaloop/central-services-shared').Logger
 const loadTemplates = require('../../templates').loadTemplates
 const Mustache = require('mustache')
-const Email = require('../nodeMailer/sendMail').Mailer
-const mailer = new Email()
+const Mailer = require('../nodeMailer/sendMail')
+
+const mailer = Mailer.sharedInstance()
 
 const dictionary = {
 
