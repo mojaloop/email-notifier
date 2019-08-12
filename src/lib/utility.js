@@ -222,36 +222,6 @@ const updateMessageProtocolMetadata = (messageProtocol, metadataType, metadataAc
 }
 
 /**
- * @function createPrepareErrorStatus
- *
- * @param {number} errorCode - error code for error occurred
- * @param {string} errorDescription - error description for error occurred
- * @param {object} extensionList - list of extensions
- * Example:
- * errorInformation: {
- *   errorCode: 3001,
- *   errorDescription: 'A failure has occurred',
- *   extensionList: [{
- *      extension: {
- *        key: 'key',
- *        value: 'value'
- *      }
- *   }]
- * }
- *
- * @returns {object} - Returns errorInformation object
- */
-const createPrepareErrorStatus = (errorCode, errorDescription, extensionList) => {
-  return {
-    errorInformation: {
-      errorCode,
-      errorDescription,
-      extensionList
-    }
-  }
-}
-
-/**
  * @function createState
  *
  * @param {string} status - status of message
@@ -274,60 +244,8 @@ const createState = (status, code, description) => {
   }
 }
 
-// /**
-//  * @function createGeneralTopicConfig
-//  *
-//  * @param {string} functionality - the functionality flow. Example: 'transfer' ie: note the case of text
-//  * @param {string} action - the action that applies to the flow. Example: 'prepare' ie: note the case of text
-//  * @param {number} partition - optional partition to produce to
-//  * @param {*} opaqueKey - optional opaque token, which gets passed along to your delivery reports
-//  *
-//  * @returns {object} - Returns newly created general topicConfig
-//  */
-// const createGeneralTopicConf = (functionality, action, partition = 0, opaqueKey = 0) => {
-//   return {
-//     topicName: transformGeneralTopicName(functionality, action),
-//     key: Uuid(),
-//     partition,
-//     opaqueKey
-//   }
-// }
-
-/**
- * @function produceGeneralMessage
- *
- * @async
- * @description This is an async method that produces a message against a generated Kafka topic. it is called multiple times
- *
- * Kafka.Producer.produceMessage called to persist the message to the configured topic on Kafka
- * Utility.updateMessageProtocolMetadata called updates the messages metadata
- * Utility.createGeneralTopicConf called dynamically generates the general topic configuration
- * Utility.getKafkaConfig called dynamically gets Kafka configuration
- *
- * @param {string} functionality - the functionality flow. Example: 'transfer' ie: note the case of text
- * @param {string} action - the action that applies to the flow. Example: 'prepare' ie: note the case of text
- * @param {object} message - a list of messages to consume for the relevant topic
- * @param {object} state - state of the message being produced
- *
- * @returns {object} - Returns a boolean: true if successful, or throws and error if failed
- */
-// const produceGeneralMessage = async (functionality, action, message, state) => {
-//   let functionalityMapped = functionality
-//   let actionMapped = action
-//   if (Enum.topicMap[functionality] && Enum.topicMap[functionality][action]) {
-//     functionalityMapped = Enum.topicMap[functionality][action].functionality
-//     actionMapped = Enum.topicMap[functionality][action].action
-//   }
-//   await Kafka.Producer.produceMessage(updateMessageProtocolMetadata(message, functionality, action, state),
-//     createGeneralTopicConf(functionalityMapped, actionMapped),
-//     getKafkaConfig(ENUMS.PRODUCER, functionalityMapped.toUpperCase(), actionMapped.toUpperCase()))
-// }
-
 exports.transformGeneralTopicName = transformGeneralTopicName
 exports.getKafkaConfig = getKafkaConfig
 exports.updateMessageProtocolMetadata = updateMessageProtocolMetadata
-exports.createPrepareErrorStatus = createPrepareErrorStatus
 exports.createState = createState
-// exports.produceGeneralMessage = produceGeneralMessage
 exports.ENUMS = ENUMS
-// exports.createGeneralTopicConf = createGeneralTopicConf
