@@ -29,6 +29,7 @@ const Logger = require('@mojaloop/central-services-shared').Logger
 const loadTemplates = require('../../templates').loadTemplates
 const Mustache = require('mustache')
 const Mailer = require('../nodeMailer/sendMail')
+const ErrorHandler = require('@mojaloop/central-services-error-handling')
 
 const mailer = Mailer.sharedInstance()
 
@@ -71,7 +72,7 @@ const actionBuilder = (action) => {
   if (action in dictionary) {
     return dictionary[action]
   } else {
-    throw new Error('Action are not supported')
+    throw ErrorHandler.Factory.createInternalServerFSPIOPError('Action are not supported')
   }
 }
 
