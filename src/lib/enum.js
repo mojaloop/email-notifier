@@ -87,7 +87,7 @@ const headers = {
 }
 const topicMap = {
   position: {
-    'commit': {
+    commit: {
       functionality: transferEventType.POSITION,
       action: transferEventAction.FULFIL
     },
@@ -95,13 +95,13 @@ const topicMap = {
       functionality: transferEventType.POSITION,
       action: transferEventAction.ABORT
     },
-    'reject': {
+    reject: {
       functionality: transferEventType.POSITION,
       action: transferEventAction.ABORT
     }
   },
   notification: {
-    'prepare': {
+    prepare: {
       functionality: transferEventType.NOTIFICATION,
       action: transferEventAction.EVENT
     },
@@ -109,11 +109,11 @@ const topicMap = {
       functionality: transferEventType.NOTIFICATION,
       action: transferEventAction.EVENT
     },
-    'commit': {
+    commit: {
       functionality: transferEventType.NOTIFICATION,
       action: transferEventAction.EVENT
     },
-    'abort': {
+    abort: {
       functionality: transferEventType.NOTIFICATION,
       action: transferEventAction.EVENT
     },
@@ -121,15 +121,15 @@ const topicMap = {
       functionality: transferEventType.NOTIFICATION,
       action: transferEventAction.EVENT
     },
-    'reject': {
+    reject: {
       functionality: transferEventType.NOTIFICATION,
       action: transferEventAction.EVENT
     },
-    'get': {
+    get: {
       functionality: transferEventType.NOTIFICATION,
       action: transferEventAction.EVENT
     },
-    'event': {
+    event: {
       functionality: transferEventType.NOTIFICATION,
       action: transferEventAction.EVENT
     }

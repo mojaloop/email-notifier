@@ -271,18 +271,18 @@ const messages = [
 
 const config = {
   options: {
-    'mode': 2,
-    'batchSize': 1,
-    'pollFrequency': 10,
-    'recursiveTimeout': 100,
-    'messageCharset': 'utf8',
-    'messageAsJSON': true,
-    'sync': true,
-    'consumeTimeout': 1000
+    mode: 2,
+    batchSize: 1,
+    pollFrequency: 10,
+    recursiveTimeout: 100,
+    messageCharset: 'utf8',
+    messageAsJSON: true,
+    sync: true,
+    consumeTimeout: 1000
   },
   rdkafkaConf: {
     'client.id': 'kafka-test',
-    'debug': 'all',
+    debug: 'all',
     'group.id': 'central-ledger-kafka',
     'metadata.broker.list': 'localhost:9092',
     'enable.auto.commit': false
@@ -402,7 +402,7 @@ Test('Admin handler', adminHandlerTest => {
         await Kafka.Consumer.createHandler(topicName, config, command)
         Utility.transformGeneralTopicName.returns(topicName)
         Utility.getKafkaConfig.returns(config)
-        let result = await adminHandler.transfer(null, messageProtocolWrongAction)
+        const result = await adminHandler.transfer(null, messageProtocolWrongAction)
         test.ok(result, 'exits without error')
         test.end()
       } catch (e) {
@@ -417,7 +417,7 @@ Test('Admin handler', adminHandlerTest => {
         Utility.transformGeneralTopicName.returns(topicName)
         Utility.getKafkaConfig.returns(config)
         Kafka.Consumer.getConsumer.withArgs(topicName).throws(new Error())
-        let result = await adminHandler.transfer(null, Object.assign({}, messages[0]))
+        const result = await adminHandler.transfer(null, Object.assign({}, messages[0]))
         test.ok(result, 'exits')
         test.end()
       } catch (e) {
@@ -574,7 +574,7 @@ Test('Admin handler', adminHandlerTest => {
           existsMatching: 0,
           existingNotMatching: 0
         })
-        let result = await adminHandler.transfer(null, Object.assign({}, messages[0], { value: { content: { payload: undefined } } }))
+        const result = await adminHandler.transfer(null, Object.assign({}, messages[0], { value: { content: { payload: undefined } } }))
         test.equal(result, false)
         test.end()
       } catch (e) {

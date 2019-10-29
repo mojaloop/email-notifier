@@ -40,13 +40,13 @@ class Mailer {
     this.transporter = Nodemailer.createTransport(options)
   }
 
-  static sharedInstance() {
+  static sharedInstance () {
     if (!sharedInstance) {
       sharedInstance = new Mailer()
     }
 
     return sharedInstance
-  } 
+  }
 
   async sendMailMessage (message) {
     return new Promise((resolve, reject) => {

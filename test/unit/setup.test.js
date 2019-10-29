@@ -71,7 +71,7 @@ Test('Setup test', async setupTest => {
       }
 
       setupProxy = Proxyquire('../../src/setup', {
-        'rxjs': RxStub,
+        rxjs: RxStub,
         './observables': ObservablesStub,
         '@mojaloop/central-services-health': {
           createHealthCheckServer: createHealthCheckServerStub,
@@ -104,7 +104,7 @@ Test('Setup test', async setupTest => {
 
   await setupTest.test('setup should', async assert => {
     try {
-      let result = await setupProxy.setup()
+      const result = await setupProxy.setup()
       assert.ok(result, 'Notifier setup finished')
       assert.ok(createHealthCheckServerStub.calledOnce, 'healthCheck initialized')
       assert.ok(createHealthCheckServerStub.withArgs(Config.get('PORT'), (r, h) => {}))

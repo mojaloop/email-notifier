@@ -32,7 +32,7 @@ const Consumer = require('@mojaloop/central-services-stream').Kafka.Consumer
 const Logger = require('@mojaloop/central-services-shared').Logger
 const Utility = require('../utility')
 const ErrorHandler = require('@mojaloop/central-services-error-handling')
-let listOfConsumers = {}
+const listOfConsumers = {}
 
 /**
  * @function isConsumerAutoCommitEnabled
@@ -156,7 +156,7 @@ const getMetadataPromise = (consumer, topic) => {
   return new Promise((resolve, reject) => {
     const cb = (err, metadata) => {
       if (err) {
-        return reject(new Error(`Error connecting to consumer`))
+        return reject(new Error('Error connecting to consumer'))
       }
 
       return resolve(metadata)

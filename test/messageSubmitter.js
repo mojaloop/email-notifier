@@ -1,12 +1,12 @@
 const Utility = require('./src/lib/utility')
 
-let message = {
+const message = {
 
 }
 
-let messageSubimtter = async (message) => {
+const messageSubimtter = async (message) => {
   try {
-    let success = {
+    const success = {
       status: 'success',
       code: 0,
       description: 'action successful'
