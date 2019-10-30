@@ -41,39 +41,76 @@ const packageJson = require('../package.json')
 const Observables = require('./observables')
 const Config = require('./lib/config')
 
-const setup = async () => {
-  const hubName = Config.get('HUB_PARTICIPANT').NAME
-  await Consumer.registerNotificationHandler()
-  const topicName = Utility.transformGeneralTopicName(Utility.ENUMS.NOTIFICATION, Utility.ENUMS.EVENT)
-  const consumer = Consumer.getConsumer(topicName)
+class Setup {
+  static registerNotificationHandler () {
+    return Consumer.registerNotificationHandler()
+  }
 
-  const healthCheck = new HealthCheck(packageJson, [
-    getSubServiceHealthBroker,
-    getSubServiceHealthSMTP
-  ])
-  await createHealthCheckServer(Config.get('PORT'), defaultHealthHandler(healthCheck))
+  static get topicName () {
+    if (this._topicName === undefined) {
+      this._topicName = Utility.transformGeneralTopicName(
+        Utility.ENUMS.NOTIFICATION, Utility.ENUMS.EVENT)
+    }
+    return this._topicName
+  }
 
-  const topicObservable = Rx.Observable.create((observer) => {
-    consumer.on('message', async (data) => {
-      Logger.info(`Central-Event-Processor :: Topic ${topicName} :: Payload: \n${JSON.stringify(data.value, null, 2)}`)
-      observer.next(data)
-      if (!Consumer.isConsumerAutoCommitEnabled(topicName)) {
-        consumer.commitMessageSync(data)
-      }
+  static getConsumer (topicName = null) {
+    if (topicName == null) {
+      topicName = this.topicName
+    }
+    return Consumer.getConsumer(topicName)
+  }
+
+  static getHealthCheck () {
+    return new HealthCheck(packageJson, [
+      getSubServiceHealthBroker,
+      getSubServiceHealthSMTP
+    ])
+  }
+
+  static createHealthCheckServer (healthCheck = null) {
+    if (healthCheck === null) {
+      healthCheck = this.getHealthCheck()
+    }
+
+    const handler = defaultHealthHandler(healthCheck)
+    return createHealthCheckServer(Config.get('PORT'), handler)
+  }
+
+  static getTopicObservable (topicName = null) {
+    if (topicName === null) {
+      topicName = this.topicName
+    }
+    const consumer = this.getConsumer(topicName)
+    return Rx.Observable.create((observer) => {
+      consumer.on('message', async (data) => {
+        Logger.info(`Central-Event-Processor :: Topic ${topicName} :: ` +
+                    `Payload: \n${JSON.stringify(data.value, null, 2)}`)
+        observer.next(data)
+        if (!Consumer.isConsumerAutoCommitEnabled(topicName)) {
+          consumer.commitMessageSync(data)
+        }
+      })
     })
-  })
+  }
 
-  const fltr = filter(data => data.value.from === hubName)
-  const flatM = flatMap(Observables.actionObservable)
+  static async setup () {
+    const topicName = this.topicName
+    const hubName = Config.get('HUB_PARTICIPANT').NAME
 
-  const emailNotification = topicObservable.pipe(fltr, flatM)
+    await this.registerNotificationHandler()
+    await this.createHealthCheckServer(this.getHealthCheck())
 
-  emailNotification.subscribe(result => {
-    Logger.info(result)
-  })
-  return true
+    const fltr = filter(data => data.value.from === hubName)
+    const flatM = flatMap(Observables.actionObservable)
+    const topicObservable = this.getTopicObservable(topicName)
+    const emailNotification = topicObservable.pipe(fltr, flatM)
+
+    emailNotification.subscribe(result => {
+      Logger.info(result)
+    })
+    return true
+  }
 }
 
-module.exports = {
-  setup
-}
+module.exports = Setup

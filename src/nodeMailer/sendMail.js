@@ -1,12 +1,18 @@
 /*****
  License
- --------------
+ -------
  Copyright © 2017 Bill & Melinda Gates Foundation
- The Mojaloop files are made available by the Bill & Melinda Gates Foundation under the Apache License, Version 2.0 (the "License") and you may not use these files except in compliance with the License. You may obtain a copy of the License at
- http://www.apache.org/licenses/LICENSE-2.0
- Unless required by applicable law or agreed to in writing, the Mojaloop files are distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+ The Mojaloop files are made available by the Bill & Melinda Gates Foundation
+ under the Apache License, Version 2.0 (the "License") and you may not use these
+ files except in compliance with the License. You may obtain a copy of the
+ License at http://www.apache.org/licenses/LICENSE-2.0
+ Unless required by applicable law or agreed to in writing, the Mojaloop files
+ are distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ KIND, either express or implied. See the License for the specific language
+ governing permissions and limitations under the License.
+
  Contributors
- --------------
+ ------------
  This is the official list of the Mojaloop project contributors for this file.
  Names of the original copyright holders (individuals or organizations)
  should be listed with a '*' in the first column. People who have
@@ -37,7 +43,11 @@ let sharedInstance = null
 
 class Mailer {
   constructor (options = MailOptions) {
-    this.transporter = Nodemailer.createTransport(options)
+    this.transporter = this.constructor.getTransport(options)
+  }
+
+  static getTransport (options) {
+    return Nodemailer.createTransport(options)
   }
 
   static sharedInstance () {
@@ -62,37 +72,5 @@ class Mailer {
     })
   }
 }
-
-// let transporter
-
-/* let verifyEmailTransport = () => {
-  return new Promise((resolve, reject) => {
-    transporter.verify(function (error, success) {
-      if (error) {
-        console.log(error)
-      } else {
-        console.log('Mail server ready to take messages')
-      }
-    })
-  })
-} */
-
-// let sendMailMessage = async (message) => {
-//   if (!transporter) {
-//     transporter = await Nodemailer.createTransport(MailOptions)
-//   }
-//   return new Promise((resolve, reject) => {
-//     transporter.sendMail(message, (error, info) => {
-//       if (error) {
-//         reject(error)
-//       } else {
-//         console.log('else hit')
-//         resolve({
-//           emailSent: info.response
-//         })
-//       }
-//     })
-//   })
-// }
 
 module.exports = Mailer
