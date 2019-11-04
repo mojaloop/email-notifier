@@ -118,5 +118,26 @@
   },
   "598|istanbul-coveralls>coveralls>request>tunnel-agent": {
     "ignore": 1
+  },
+  "1165|@hapi/hapi>@hapi/subtext": {
+    "fix": 1
+  },
+  "1165|@mojaloop/central-services-health>@hapi/hapi>@hapi/subtext": {
+    "fix": 1
+  },
+  "1118|standard>eslint>eslint-utils": {
+    "fix": 1
+  },
+  "1118|standard>eslint-plugin-node>eslint-plugin-es>eslint-utils": {
+    "fix": 1
+  },
+  "1118|standard>eslint-plugin-node>eslint-utils": {
+    "fix": 1
+  },
+  "1164|istanbul>istanbul-api>istanbul-reports>handlebars": {
+    "fix": 1
+  },
+  "1164|nyc>istanbul-reports>handlebars": {
+    "fix": 1
   }
 }
