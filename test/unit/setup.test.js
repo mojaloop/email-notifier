@@ -107,7 +107,7 @@ Test('Setup test', async setupTest => {
       const result = await setupProxy.setup()
       assert.ok(result, 'Notifier setup finished')
       assert.ok(createHealthCheckServerStub.calledOnce, 'healthCheck initialized')
-      assert.ok(createHealthCheckServerStub.withArgs(Config.get('PORT'), (r, h) => {}))
+      assert.ok(createHealthCheckServerStub.withArgs(Config.get('PORT'), () => {}))
       assert.ok(HealthCheckConstructorStub.calledOnce, 'HealthCheck constructor called')
 
       assert.ok(RxStub.Observable.create.calledOnce, 'Observable created')
