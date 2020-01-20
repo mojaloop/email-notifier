@@ -13,7 +13,7 @@
     "config": "3.2.4",
     "mustache": "3.1.0",
     "nodemailer": "6.4.2",
-    "rxjs": "6.5.3",
+    "rxjs": "6.5.4",
     "rxjs-compat": "6.5.3",
     "uuid4": "1.1.4"
   },
