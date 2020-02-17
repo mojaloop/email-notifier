@@ -1,4 +1,4 @@
-FROM node:10.15.3-alpine as builder
+FROM node:12.16.0-alpine as builder
 USER root
 
 WORKDIR /opt/email-notifier
@@ -17,7 +17,7 @@ COPY config /opt/email-notifier/config
 COPY app.js /opt/email-notifier/
 COPY templates /opt/email-notifier/templates
 
-FROM node:10.15.3-alpine
+FROM node:12.16.0-alpine
 
 WORKDIR /opt/email-notifier
 
