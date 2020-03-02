@@ -1,6 +1,6 @@
 {
   "name": "email-notifier",
-  "version": "9.2.2",
+  "version": "9.2.3",
   "description": "email notifier to monitor the notificaion kafka topic and send emails.",
   "main": "app.js",
   "dependencies": {
