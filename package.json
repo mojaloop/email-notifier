@@ -12,7 +12,7 @@
     "bluebird": "3.7.2",
     "config": "3.2.6",
     "mustache": "4.0.0",
-    "nodemailer": "6.4.3",
+    "nodemailer": "6.4.5",
     "rxjs": "6.5.4",
     "rxjs-compat": "6.5.4",
     "uuid4": "1.1.4"
