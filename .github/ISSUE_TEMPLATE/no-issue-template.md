@@ -8,7 +8,7 @@ assignees: ''
 ---
 
 <!--
-This issue tracker is not monitored, and and issues created here will be deleted. Please use the issue tracker in https://github.com/mojaloop/project
+This issue tracker is not monitored, and issues created here will be deleted. Please use the issue tracker in https://github.com/mojaloop/project
 
 For other questions and help:
 - Mojaloop Documentation - https://mojaloop.io/documentation

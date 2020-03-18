@@ -1,0 +1,198 @@
+{
+  "decisions": {
+    "1012|nodemon>chokidar>anymatch>micromatch>braces>snapdragon>base>cache-base>set-value": {
+      "madeAt": 0,
+      "decision": "fix"
+    },
+    "1012|nodemon>chokidar>anymatch>micromatch>extglob>expand-brackets>snapdragon>base>cache-base>set-value": {
+      "madeAt": 0,
+      "decision": "fix"
+    },
+    "1012|nodemon>chokidar>anymatch>micromatch>extglob>snapdragon>base>cache-base>set-value": {
+      "madeAt": 0,
+      "decision": "fix"
+    },
+    "1012|nodemon>chokidar>anymatch>micromatch>nanomatch>snapdragon>base>cache-base>set-value": {
+      "madeAt": 0,
+      "decision": "fix"
+    },
+    "1012|nodemon>chokidar>anymatch>micromatch>snapdragon>base>cache-base>set-value": {
+      "madeAt": 0,
+      "decision": "fix"
+    },
+    "1012|nodemon>chokidar>braces>snapdragon>base>cache-base>set-value": {
+      "madeAt": 0,
+      "decision": "fix"
+    },
+    "1012|nodemon>chokidar>readdirp>micromatch>braces>snapdragon>base>cache-base>set-value": {
+      "madeAt": 0,
+      "decision": "fix"
+    },
+    "1012|nodemon>chokidar>readdirp>micromatch>extglob>expand-brackets>snapdragon>base>cache-base>set-value": {
+      "madeAt": 0,
+      "decision": "fix"
+    },
+    "1012|nodemon>chokidar>readdirp>micromatch>extglob>snapdragon>base>cache-base>set-value": {
+      "madeAt": 0,
+      "decision": "fix"
+    },
+    "1012|nodemon>chokidar>readdirp>micromatch>nanomatch>snapdragon>base>cache-base>set-value": {
+      "madeAt": 0,
+      "decision": "fix"
+    },
+    "1012|nodemon>chokidar>readdirp>micromatch>snapdragon>base>cache-base>set-value": {
+      "madeAt": 0,
+      "decision": "fix"
+    },
+    "1012|nodemon>chokidar>anymatch>micromatch>braces>snapdragon>base>cache-base>union-value>set-value": {
+      "madeAt": 0,
+      "decision": "fix"
+    },
+    "1012|nodemon>chokidar>anymatch>micromatch>extglob>expand-brackets>snapdragon>base>cache-base>union-value>set-value": {
+      "madeAt": 0,
+      "decision": "fix"
+    },
+    "1012|nodemon>chokidar>anymatch>micromatch>extglob>snapdragon>base>cache-base>union-value>set-value": {
+      "madeAt": 0,
+      "decision": "fix"
+    },
+    "1012|nodemon>chokidar>anymatch>micromatch>nanomatch>snapdragon>base>cache-base>union-value>set-value": {
+      "madeAt": 0,
+      "decision": "fix"
+    },
+    "1012|nodemon>chokidar>anymatch>micromatch>snapdragon>base>cache-base>union-value>set-value": {
+      "madeAt": 0,
+      "decision": "fix"
+    },
+    "1012|nodemon>chokidar>braces>snapdragon>base>cache-base>union-value>set-value": {
+      "madeAt": 0,
+      "decision": "fix"
+    },
+    "1012|nodemon>chokidar>readdirp>micromatch>braces>snapdragon>base>cache-base>union-value>set-value": {
+      "madeAt": 0,
+      "decision": "fix"
+    },
+    "1012|nodemon>chokidar>readdirp>micromatch>extglob>expand-brackets>snapdragon>base>cache-base>union-value>set-value": {
+      "madeAt": 0,
+      "decision": "fix"
+    },
+    "1012|nodemon>chokidar>readdirp>micromatch>extglob>snapdragon>base>cache-base>union-value>set-value": {
+      "madeAt": 0,
+      "decision": "fix"
+    },
+    "1012|nodemon>chokidar>readdirp>micromatch>nanomatch>snapdragon>base>cache-base>union-value>set-value": {
+      "madeAt": 0,
+      "decision": "fix"
+    },
+    "1012|nodemon>chokidar>readdirp>micromatch>snapdragon>base>cache-base>union-value>set-value": {
+      "madeAt": 0,
+      "decision": "fix"
+    },
+    "1013|nodemon>chokidar>anymatch>micromatch>braces>snapdragon>base>mixin-deep": {
+      "madeAt": 0,
+      "decision": "fix"
+    },
+    "1013|nodemon>chokidar>anymatch>micromatch>extglob>expand-brackets>snapdragon>base>mixin-deep": {
+      "madeAt": 0,
+      "decision": "fix"
+    },
+    "1013|nodemon>chokidar>anymatch>micromatch>extglob>snapdragon>base>mixin-deep": {
+      "madeAt": 0,
+      "decision": "fix"
+    },
+    "1013|nodemon>chokidar>anymatch>micromatch>nanomatch>snapdragon>base>mixin-deep": {
+      "madeAt": 0,
+      "decision": "fix"
+    },
+    "1013|nodemon>chokidar>anymatch>micromatch>snapdragon>base>mixin-deep": {
+      "madeAt": 0,
+      "decision": "fix"
+    },
+    "1013|nodemon>chokidar>braces>snapdragon>base>mixin-deep": {
+      "madeAt": 0,
+      "decision": "fix"
+    },
+    "1013|nodemon>chokidar>readdirp>micromatch>braces>snapdragon>base>mixin-deep": {
+      "madeAt": 0,
+      "decision": "fix"
+    },
+    "1013|nodemon>chokidar>readdirp>micromatch>extglob>expand-brackets>snapdragon>base>mixin-deep": {
+      "madeAt": 0,
+      "decision": "fix"
+    },
+    "1013|nodemon>chokidar>readdirp>micromatch>extglob>snapdragon>base>mixin-deep": {
+      "madeAt": 0,
+      "decision": "fix"
+    },
+    "1013|nodemon>chokidar>readdirp>micromatch>nanomatch>snapdragon>base>mixin-deep": {
+      "madeAt": 0,
+      "decision": "fix"
+    },
+    "1013|nodemon>chokidar>readdirp>micromatch>snapdragon>base>mixin-deep": {
+      "madeAt": 0,
+      "decision": "fix"
+    },
+    "566|istanbul-coveralls>coveralls>request>hawk>boom>hoek": {
+      "madeAt": 0,
+      "decision": "ignore"
+    },
+    "566|istanbul-coveralls>coveralls>request>hawk>cryptiles>boom>hoek": {
+      "madeAt": 0,
+      "decision": "ignore"
+    },
+    "566|istanbul-coveralls>coveralls>request>hawk>hoek": {
+      "madeAt": 0,
+      "decision": "ignore"
+    },
+    "566|istanbul-coveralls>coveralls>request>hawk>sntp>hoek": {
+      "madeAt": 0,
+      "decision": "ignore"
+    },
+    "788|istanbul-coveralls>coveralls>js-yaml": {
+      "madeAt": 0,
+      "decision": "ignore"
+    },
+    "813|istanbul-coveralls>coveralls>js-yaml": {
+      "madeAt": 0,
+      "decision": "ignore"
+    },
+    "598|istanbul-coveralls>coveralls>request>tunnel-agent": {
+      "madeAt": 0,
+      "decision": "ignore"
+    },
+    "1165|@hapi/hapi>@hapi/subtext": {
+      "madeAt": 0,
+      "decision": "fix"
+    },
+    "1165|@mojaloop/central-services-health>@hapi/hapi>@hapi/subtext": {
+      "madeAt": 0,
+      "decision": "fix"
+    },
+    "1118|standard>eslint>eslint-utils": {
+      "madeAt": 0,
+      "decision": "fix"
+    },
+    "1118|standard>eslint-plugin-node>eslint-plugin-es>eslint-utils": {
+      "madeAt": 0,
+      "decision": "fix"
+    },
+    "1118|standard>eslint-plugin-node>eslint-utils": {
+      "madeAt": 0,
+      "decision": "fix"
+    },
+    "1164|istanbul>istanbul-api>istanbul-reports>handlebars": {
+      "madeAt": 0,
+      "decision": "fix"
+    },
+    "1164|nyc>istanbul-reports>handlebars": {
+      "madeAt": 0,
+      "decision": "fix"
+    },
+    "1482|@mojaloop/central-services-health>@hapi/hapi": {
+      "decision": "fix",
+      "madeAt": 1582278832791
+    }
+  },
+  "rules": {},
+  "version": 1
+}
