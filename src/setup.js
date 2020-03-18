@@ -29,7 +29,7 @@
  */
 
 const Rx = require('rxjs')
-const { filter, flatMap } = require('rxjs/operators')
+const { filter, flatMap, catchError } = require('rxjs/operators')
 const Logger = require('@mojaloop/central-services-logger')
 const HealthCheck = require('@mojaloop/central-services-shared').HealthCheck.HealthCheck
 const { createHealthCheckServer, defaultHealthHandler } = require('@mojaloop/central-services-health')
@@ -66,7 +66,9 @@ const setup = async () => {
   const fltr = filter(data => data.value.from === hubName)
   const flatM = flatMap(Observables.actionObservable)
 
-  const emailNotification = topicObservable.pipe(fltr, flatM)
+  const emailNotification = topicObservable.pipe(fltr, flatM, catchError(() => {
+    return Rx.onErrorResumeNext(emailNotification)
+  }))
 
   emailNotification.subscribe(result => {
     Logger.info(result)
