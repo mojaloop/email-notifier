@@ -50,6 +50,9 @@ class Mailer {
 
   async sendMailMessage (message) {
     return new Promise((resolve, reject) => {
+      if (!message || !message.from || !message.to) {
+        return reject(new Error('Mail details not full'))
+      }
       this.transporter.sendMail(message, (error, info) => {
         if (error) {
           return reject(error)

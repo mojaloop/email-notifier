@@ -45,16 +45,16 @@ const dictionary = {
 
     const dfspMessage = {
       priority: 'high',
-      from: hubNotificationDetails.value,
-      to: dfspNotificationDetails.value,
+      from: hubNotificationDetails ? hubNotificationDetails.value : null,
+      to: dfspNotificationDetails ? dfspNotificationDetails.value : null,
       subject: payload.messageDetails.messageSubject,
       text: dfspEmailBody
     }
 
     const hubMessage = {
       priority: 'high',
-      from: hubNotificationDetails.value,
-      to: hubNotificationDetails.value,
+      from: hubNotificationDetails ? hubNotificationDetails.value : null,
+      to: hubNotificationDetails ? hubNotificationDetails.value : null,
       subject: payload.messageDetails.messageSubject,
       text: hubEmailBody
     }

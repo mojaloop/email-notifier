@@ -129,7 +129,7 @@ Test('nodeMailer unit tests (sendMail.js) : ', async sendMailTest => {
 
     try {
       const mailer = new Mailer()
-      const result = await mailer.sendMailMessage(mockMessage)
+      const result = await mailer.sendMailMessage(mockMessage.value)
 
       assert.deepEqual(result, {
         emailSent: 'ok'
