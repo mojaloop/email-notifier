@@ -12,7 +12,7 @@
     "@mojaloop/central-services-stream": "9.2.0",
     "camelcase": "5.3.1",
     "check-types": "11.1.2",
-    "config": "3.3.0",
+    "config": "3.3.1",
     "json-rules-engine": "5.0.3",
     "lazy-ass": "1.6.0",
     "lodash": "4.17.15",
