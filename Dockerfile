@@ -21,16 +21,16 @@ FROM node:12.16.1-alpine
 
 WORKDIR /opt/email-notifier
 
+# Create empty log file & link stdout to the application log file
+RUN mkdir ./logs && touch ./logs/combined.log
+RUN ln -sf /dev/stdout ./logs/combined.log
+
 # Create a non-root user: ml-user
 RUN adduser -D ml-user 
 USER ml-user
 
 COPY --chown=ml-user --from=builder /opt/email-notifier .
 RUN npm prune --production
-
-# Create empty log file & link stdout to the application log file
-RUN mkdir ./logs && touch ./logs/combined.log
-RUN ln -sf /dev/stdout ./logs/combined.log
 
 EXPOSE 3081
 CMD node app.js
