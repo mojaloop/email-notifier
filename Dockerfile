@@ -1,4 +1,4 @@
-FROM node:12.16.0-alpine as builder
+FROM node:12.16.1-alpine as builder
 USER root
 
 WORKDIR /opt/email-notifier
@@ -17,11 +17,15 @@ COPY config /opt/email-notifier/config
 COPY app.js /opt/email-notifier/
 COPY templates /opt/email-notifier/templates
 
-FROM node:12.16.0-alpine
+FROM node:12.16.1-alpine
 
 WORKDIR /opt/email-notifier
 
-COPY --from=builder /opt/email-notifier .
+# Create a non-root user: ml-user
+RUN adduser -D ml-user 
+USER ml-user
+
+COPY --chown=ml-user --from=builder /opt/email-notifier .
 RUN npm prune --production
 
 # Create empty log file & link stdout to the application log file
