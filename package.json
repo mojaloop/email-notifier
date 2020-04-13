@@ -18,7 +18,7 @@
     "lodash": "4.17.15",
     "mustache": "4.0.1",
     "nodemailer": "6.4.5",
-    "rxjs": "6.5.4",
+    "rxjs": "6.5.5",
     "rxjs-compat": "6.5.4",
     "uuid4": "1.1.4"
   },
