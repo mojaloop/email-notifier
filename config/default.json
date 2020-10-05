@@ -5,7 +5,7 @@
       "port": 587,
       "secureConnection": true,
       "tls": {
-        "ciphers":"SSLv3"
+        "ciphers": "SSLv3"
      },
       "auth": {
         "user": "user",
