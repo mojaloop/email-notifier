@@ -8,7 +8,7 @@
     "@mojaloop/central-services-error-handling": "11.1.0",
     "@mojaloop/central-services-health": "11.0.0",
     "@mojaloop/central-services-logger": "10.6.0",
-    "@mojaloop/central-services-shared": "^11.5.5",
+    "@mojaloop/central-services-shared": "11.5.5",
     "@mojaloop/central-services-stream": "10.6.0",
     "camelcase": "6.2.0",
     "check-types": "11.1.2",
