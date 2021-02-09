@@ -63,6 +63,18 @@
       "decision": "ignore",
       "madeAt": 1598600868005,
       "expiresAt": 1601192693095
+    },
+    "1179|faucet>minimist": {
+      "decision": "postpone",
+      "madeAt": 1612804989660
+    },
+    "1500|@mojaloop/central-services-health>@mojaloop/central-services-shared>widdershins>yargs>yargs-parser": {
+      "decision": "postpone",
+      "madeAt": 1612804995685
+    },
+    "1500|@mojaloop/central-services-shared>widdershins>yargs>yargs-parser": {
+      "decision": "postpone",
+      "madeAt": 1612804995685
     }
   },
   "rules": {},
