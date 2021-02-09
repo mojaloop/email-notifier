@@ -5,7 +5,7 @@
   "main": "app.js",
   "dependencies": {
     "@hapi/hapi": "20.1.0",
-    "@mojaloop/central-services-error-handling": "11.0.0",
+    "@mojaloop/central-services-error-handling": "11.1.0",
     "@mojaloop/central-services-health": "11.0.0",
     "@mojaloop/central-services-logger": "10.6.0",
     "@mojaloop/central-services-shared": "^11.5.5",
