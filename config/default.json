@@ -1,15 +1,15 @@
 {
   "emailSettings": {
     "smtpConfig": {
-      "host": "smtp-relay.sendinblue.com",
+      "host": "test.smpt.server",
       "port": 587,
-      "secureConnection": false,
+      "secureConnection": true,
       "tls": {
         "ciphers": "SSLv3"
-      },
+     },
       "auth": {
-        "user": "valentin.genev@modusbox.com",
-        "pass": "NdMCVgq5HROtDGI4"
+        "user": "user",
+        "pass": "password"
       }
     }
   },
@@ -51,7 +51,8 @@
               "enable.auto.commit": false,
               "auto.commit.interval.ms": 200,
               "socket.keepalive.enable": true,
-              "socket.max.fails": 1
+              "socket.max.fails": 1,
+              "allow.auto.create.topics": true
             },
             "topicConf": {
               "auto.offset.reset": "earliest"

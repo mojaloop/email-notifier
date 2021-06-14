@@ -235,20 +235,19 @@ Test('Producer', producerTest => {
     })
 
     disconnectTest.test('throw error if failure to disconnect from kafka when disconnecting all Producers', async test => {
+      // setup stubs for getProducer method
+      const topicNameSuccess = 'topic1'
+      const topicNameFailure = 'topic2'
+      const getProducerStub = sandbox.stub()
+      getProducerStub.returns(new KafkaProducer({}))
+      getProducerStub.withArgs(topicNameFailure).throws(`No producer found for topic ${topicNameFailure}`)
+
+      // lets rewire the producer import
+      const KafkaProducerProxy = rewire(`${src}/lib/kafka/producer`)
+
+      // lets override the getProducer method within the import
+      KafkaProducerProxy.__set__('getProducer', getProducerStub)
       try {
-        // setup stubs for getProducer method
-        const topicNameSuccess = 'topic1'
-        var topicNameFailure = 'topic2'
-        var getProducerStub = sandbox.stub()
-        getProducerStub.returns(new KafkaProducer({}))
-        getProducerStub.withArgs(topicNameFailure).throws(`No producer found for topic ${topicNameFailure}`)
-
-        // lets rewire the producer import
-        const KafkaProducerProxy = rewire(`${src}/lib/kafka/producer`)
-
-        // lets override the getProducer method within the import
-        KafkaProducerProxy.__set__('getProducer', getProducerStub)
-
         await KafkaProducerProxy.produceMessage({}, { topicName: topicNameSuccess }, {})
         await KafkaProducerProxy.produceMessage({}, { topicName: topicNameFailure }, {})
 
