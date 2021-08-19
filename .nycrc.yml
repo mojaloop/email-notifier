@@ -13,7 +13,7 @@ reporter: [
   "lcov"
 ]
 exclude: [
-  "src/setup.js",
-  "src/lib/kafka/index.js",
+  "src/setup.js", # Ignoring this until there is a reason to test this file. Currently just exports the library functions.
+  "src/lib/kafka/index.js", # Ignoring this until there is a reason to test this file. Currently just exports the library functions.
   "**/node_modules/**"
 ]
