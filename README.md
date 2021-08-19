@@ -12,13 +12,13 @@ The email-notifier flow is available [here](https://github.com/mojaloop/central-
 
 - [email-notifier](#email-notifier)
   - [Contents](#contents)
-    - [Todo](#todo)
+  - [Todo](#todo)
   - [Config](#config)
   - [Troubleshooting `npm install` on MacOS](#troubleshooting-npm-install-on-macos)
   - [Auditing Dependencies](#auditing-dependencies)
   - [Container Scans](#container-scans)
 
-### Todo
+## Todo
 
 - Improve code-coverage to 90% across the board: [.nycrc.yml](./.nycrc.yml). Don't forget to un-comment out the branches code-coverage rule.
 
