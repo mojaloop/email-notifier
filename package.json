@@ -32,7 +32,7 @@
     "test": "npm run test:unit | faucet",
     "test:unit": "tape 'test/unit/**/*.test.js'",
     "test:xunit": "tape 'test/unit/**/*.test.js' | tap-xunit",
-    "test:coverage": "nyc --reporter=text-summary tapes -- 'test/unit/**/*.test.js' | tap-spec; nyc report ---reporter=text",
+    "test:coverage": "nyc tapes -- 'test/unit/**/*.test.js' | tap-spec; nyc report ---reporter=text",
     "test:coverage-check": "npm run test:coverage && nyc check-coverage",
     "audit:resolve": "SHELL=sh resolve-audit --production && sed -i 's/: \"^/: \"/' package.json",
     "audit:check": "SHELL=sh check-audit --production",
