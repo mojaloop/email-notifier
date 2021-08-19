@@ -8,13 +8,19 @@ Email Notifier is a stand-alone email service that consumes messages from kafka 
 The central-event-processor repo is available [here](https://github.com/mojaloop/central-event-processor/tree/master)  
 The email-notifier flow is available [here](https://github.com/mojaloop/central-event-processor/tree/master#Notifierflowseparateservice)  
 
-## Contents:
+## Contents
 
-- [Config](#config)
-- [Troubleshooting](#troubleshooting-npm-install-on-macos)
-- [Auditing Dependencies](#auditing-dependencies)
-- [Container Scans](#container-scans)
+- [email-notifier](#email-notifier)
+  - [Contents](#contents)
+    - [Todo](#todo)
+  - [Config](#config)
+  - [Troubleshooting `npm install` on MacOS](#troubleshooting-npm-install-on-macos)
+  - [Auditing Dependencies](#auditing-dependencies)
+  - [Container Scans](#container-scans)
 
+### Todo
+
+- Improve code-coverage to 90% across the board: [.nycrc.yml](./.nycrc.yml). Don't forget to un-comment out the branches code-coverage rule.
 
 ## Config
 
