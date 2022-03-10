@@ -30,6 +30,7 @@ const Test = require('tapes')(require('tape'))
 const fs = require('fs')
 const { promisify } = require('util')
 const readFilePromise = promisify(fs.readFile)
+const Path = require('path')
 
 Test('Templates unit tests (Index.js) : ', async templateTest => {
   let sandbox
@@ -81,7 +82,8 @@ Test('Templates unit tests (Index.js) : ', async templateTest => {
 
   await templateTest.test('Load templates should load test template.', async assert => {
     try {
-      const okTemplate = await readFilePromise(`${__dirname}/ok.template`, { encoding: 'utf8' })
+      const dirPath = Path.join(__dirname, 'ok.template')
+      const okTemplate = await readFilePromise(dirPath, { encoding: 'utf8' })
       const result = await Templates.loadTemplates('../test/unit/templates', 'template')
       assert.equal(result.ok, okTemplate)
       assert.end()
