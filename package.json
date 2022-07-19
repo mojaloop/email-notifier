@@ -1,6 +1,6 @@
 {
   "name": "email-notifier",
-  "version": "11.0.3",
+  "version": "12.0.0-snapshot.0",
   "description": "email notifier to monitor the notification kafka topic and send emails.",
   "license": "Apache-2.0",
   "main": "app.js",
@@ -82,13 +82,14 @@
     "rxjs-marbles": "7.0.1",
     "sinon": "14.0.0",
     "standard": "17.0.0",
+    "standard-version": "^9.5.0",
     "tap-spec": "^5.0.0",
     "tape": "5.5.3",
     "tapes": "4.1.0"
   },
   "standard-version": {
     "scripts": {
-        "postchangelog": "replace '\\[mojaloop/#(\\d+)\\]\\(https://github.com/mojaloop/(.*)/issues/(\\d+)\\)' '[mojaloop/#$1](https://github.com/mojaloop/project/issues/$1)' CHANGELOG.md"
+      "postchangelog": "replace '\\[mojaloop/#(\\d+)\\]\\(https://github.com/mojaloop/(.*)/issues/(\\d+)\\)' '[mojaloop/#$1](https://github.com/mojaloop/project/issues/$1)' CHANGELOG.md"
     }
-}
+  }
 }
