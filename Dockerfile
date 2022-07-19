@@ -1,35 +1,32 @@
-FROM node:12.16.1-alpine as builder
-USER root
-
-WORKDIR /opt/email-notifier
+FROM node:16.15.0-alpine as builder
+WORKDIR /opt/app
 
 RUN apk --no-cache add git
-RUN apk add --no-cache -t build-dependencies make gcc g++ python libtool autoconf automake \
+RUN apk add --no-cache -t build-dependencies make gcc g++ python3 libtool libressl-dev openssl-dev autoconf automake \
     && cd $(npm root -g)/npm \
     && npm config set unsafe-perm true \
     && npm install -g node-gyp
 
-COPY package.json package-lock.json* /opt/email-notifier/
-RUN npm install
+COPY package.json package-lock.json* /opt/app/
+RUN npm ci
 
-COPY src /opt/email-notifier/src
-COPY config /opt/email-notifier/config
-COPY app.js /opt/email-notifier/
-COPY templates /opt/email-notifier/templates
+COPY src /opt/app/src
+COPY config /opt/app/config
+COPY app.js /opt/app/
+COPY templates /opt/app/templates
 
-FROM node:12.16.1-alpine
-
-WORKDIR /opt/email-notifier
+FROM node:16.15.0-alpine
+WORKDIR /opt/app
 
 # Create empty log file & link stdout to the application log file
 RUN mkdir ./logs && touch ./logs/combined.log
 RUN ln -sf /dev/stdout ./logs/combined.log
 
 # Create a non-root user: ml-user
-RUN adduser -D ml-user 
+RUN adduser -D ml-user
 USER ml-user
 
-COPY --chown=ml-user --from=builder /opt/email-notifier .
+COPY --chown=ml-user --from=builder /opt/app .
 RUN npm prune --production
 
 EXPOSE 3081
