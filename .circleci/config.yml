@@ -324,7 +324,7 @@ jobs:
       - persist_to_workspace:
           root: /tmp
           paths:
-            - ./docker-image-local.tar
+            - ./docker-image.tar
 
   license-scan:
     executor: default-machine
