@@ -426,6 +426,8 @@ jobs:
 
   release:
     executor: default-docker
+    environment:
+      <<: *defaults_environment
     steps:
       - run:
           name: Install general dependencies
@@ -433,6 +435,8 @@ jobs:
       - checkout
       - run:
           <<: *defaults_configure_nvm
+      - run:
+          <<: *defaults_display_versions
       - restore_cache:
           keys:
           - dependency-cache-{{ .Environment.CIRCLE_SHA1 }}
@@ -459,6 +463,8 @@ jobs:
   github-release:
     executor: default-machine
     shell: "/bin/bash -eo pipefail"
+    environment:
+      <<: *defaults_environment
     steps:
       - run:
           name: Install git
@@ -501,6 +507,9 @@ jobs:
 
   publish:
     executor: default-machine
+    shell: "/bin/bash -eo pipefail"
+    environment:
+      <<: *defaults_environment
     steps:
       - checkout
       - run:
@@ -531,24 +540,25 @@ jobs:
       - run:
           name: Re-tag pre built image
           command: |
-            docker tag $DOCKER_ORG/$CIRCLE_PROJECT_REPONAME:$CIRCLE_TAG $DOCKER_ORG/$CIRCLE_PROJECT_REPONAME:$RELEASE_TAG
+            docker tag ${DOCKER_ORG:-mojaloop}/$CIRCLE_PROJECT_REPONAME:local ${DOCKER_ORG:-mojaloop}/$CIRCLE_PROJECT_REPONAME:$CIRCLE_TAG
+            docker tag ${DOCKER_ORG:-mojaloop}/$CIRCLE_PROJECT_REPONAME:local ${DOCKER_ORG:-mojaloop}/$CIRCLE_PROJECT_REPONAME:$RELEASE_TAG
       - run:
           name: Publish Docker image $CIRCLE_TAG & Latest tag to Docker Hub
           command: |
-            echo "Publishing $DOCKER_ORG/$CIRCLE_PROJECT_REPONAME:$CIRCLE_TAG"
-            docker push $DOCKER_ORG/$CIRCLE_PROJECT_REPONAME:$CIRCLE_TAG
-            echo "Publishing $DOCKER_ORG/$CIRCLE_PROJECT_REPONAME:$RELEASE_TAG"
-            docker push $DOCKER_ORG/$CIRCLE_PROJECT_REPONAME:$RELEASE_TAG
+            echo "Publishing ${DOCKER_ORG:-mojaloop}/$CIRCLE_PROJECT_REPONAME:$CIRCLE_TAG"
+            docker push ${DOCKER_ORG:-mojaloop}/$CIRCLE_PROJECT_REPONAME:$CIRCLE_TAG
+            echo "Publishing ${DOCKER_ORG:-mojaloop}/$CIRCLE_PROJECT_REPONAME:$RELEASE_TAG"
+            docker push ${DOCKER_ORG:-mojaloop}/$CIRCLE_PROJECT_REPONAME:$RELEASE_TAG
       - run:
           name: Set Image Digest
           command: |
-            IMAGE_DIGEST=$(docker inspect $DOCKER_ORG/$CIRCLE_PROJECT_REPONAME:v${CIRCLE_TAG:1} | jq '.[0].RepoDigests | .[]')
+            IMAGE_DIGEST=$(docker inspect ${DOCKER_ORG:-mojaloop}/$CIRCLE_PROJECT_REPONAME:v${CIRCLE_TAG:1} | jq '.[0].RepoDigests | .[]')
             echo "IMAGE_DIGEST=${IMAGE_DIGEST}"
             echo "export IMAGE_DIGEST=${IMAGE_DIGEST}" >> $BASH_ENV
       - run:
           name: Update Slack config
           command: |
-            echo "export SLACK_RELEASE_URL='https://hub.docker.com/layers/${CIRCLE_PROJECT_REPONAME}/${DOCKER_ORG}/${CIRCLE_PROJECT_REPONAME}/v${CIRCLE_TAG:1}/images/${IMAGE_DIGEST}?context=explore'" | sed -r "s/${DOCKER_ORG}\/${CIRCLE_PROJECT_REPONAME}@sha256:/sha256-/g" >> $BASH_ENV
+            echo "export SLACK_RELEASE_URL='https://hub.docker.com/layers/${CIRCLE_PROJECT_REPONAME}/${DOCKER_ORG:-mojaloop}/${CIRCLE_PROJECT_REPONAME}/v${CIRCLE_TAG:1}/images/${IMAGE_DIGEST}?context=explore'" | sed -r "s/${DOCKER_ORG:-mojaloop}\/${CIRCLE_PROJECT_REPONAME}@sha256:/sha256-/g" >> $BASH_ENV
       - slack/notify:
           event: pass
           template: SLACK_TEMP_RELEASE_SUCCESS
@@ -558,6 +568,9 @@ jobs:
 
   publish-snapshot:
     executor: default-machine
+    shell: "/bin/bash -eo pipefail"
+    environment:
+      <<: *defaults_environment
     steps:
       - checkout
       - run:
@@ -588,24 +601,25 @@ jobs:
       - run:
           name: Re-tag pre built image
           command: |
-            docker tag $DOCKER_ORG/$CIRCLE_PROJECT_REPONAME:$CIRCLE_TAG $DOCKER_ORG/$CIRCLE_PROJECT_REPONAME:$RELEASE_TAG
+            docker tag ${DOCKER_ORG:-mojaloop}/$CIRCLE_PROJECT_REPONAME:local ${DOCKER_ORG:-mojaloop}/$CIRCLE_PROJECT_REPONAME:$CIRCLE_TAG
+            docker tag ${DOCKER_ORG:-mojaloop}/$CIRCLE_PROJECT_REPONAME:local ${DOCKER_ORG:-mojaloop}/$CIRCLE_PROJECT_REPONAME:$RELEASE_TAG
       - run:
           name: Publish Docker image $CIRCLE_TAG & Latest tag to Docker Hub
           command: |
-            echo "Publishing $DOCKER_ORG/$CIRCLE_PROJECT_REPONAME:$CIRCLE_TAG"
-            docker push $DOCKER_ORG/$CIRCLE_PROJECT_REPONAME:$CIRCLE_TAG
-            echo "Publishing $DOCKER_ORG/$CIRCLE_PROJECT_REPONAME:$RELEASE_TAG"
-            docker push $DOCKER_ORG/$CIRCLE_PROJECT_REPONAME:$RELEASE_TAG
+            echo "Publishing ${DOCKER_ORG:-mojaloop}/$CIRCLE_PROJECT_REPONAME:$CIRCLE_TAG"
+            docker push ${DOCKER_ORG:-mojaloop}/$CIRCLE_PROJECT_REPONAME:$CIRCLE_TAG
+            echo "Publishing ${DOCKER_ORG:-mojaloop}/$CIRCLE_PROJECT_REPONAME:$RELEASE_TAG"
+            docker push ${DOCKER_ORG:-mojaloop}/$CIRCLE_PROJECT_REPONAME:$RELEASE_TAG
       - run:
           name: Set Image Digest
           command: |
-            IMAGE_DIGEST=$(docker inspect $DOCKER_ORG/$CIRCLE_PROJECT_REPONAME:v${CIRCLE_TAG:1} | jq '.[0].RepoDigests | .[]')
+            IMAGE_DIGEST=$(docker inspect ${DOCKER_ORG:-mojaloop}/$CIRCLE_PROJECT_REPONAME:v${CIRCLE_TAG:1} | jq '.[0].RepoDigests | .[]')
             echo "IMAGE_DIGEST=${IMAGE_DIGEST}"
             echo "export IMAGE_DIGEST=${IMAGE_DIGEST}" >> $BASH_ENV
       - run:
           name: Update Slack config
           command: |
-            echo "export SLACK_RELEASE_URL='https://hub.docker.com/layers/${CIRCLE_PROJECT_REPONAME}/${DOCKER_ORG}/${CIRCLE_PROJECT_REPONAME}/v${CIRCLE_TAG:1}/images/${IMAGE_DIGEST}?context=explore'" | sed -r "s/${DOCKER_ORG}\/${CIRCLE_PROJECT_REPONAME}@sha256:/sha256-/g" >> $BASH_ENV
+            echo "export SLACK_RELEASE_URL='https://hub.docker.com/layers/${CIRCLE_PROJECT_REPONAME}/${DOCKER_ORG:-mojaloop}/${CIRCLE_PROJECT_REPONAME}/v${CIRCLE_TAG:1}/images/${IMAGE_DIGEST}?context=explore'" | sed -r "s/${DOCKER_ORG:-mojaloop}\/${CIRCLE_PROJECT_REPONAME}@sha256:/sha256-/g" >> $BASH_ENV
       - slack/notify:
           event: pass
           template: SLACK_TEMP_RELEASE_SUCCESS
@@ -619,7 +633,6 @@ jobs:
 # CircleCI Workflow config
 ##
 workflows:
-  version: 2
   build_and_test:
     jobs:
       - pr-tools/pr-title-check:
