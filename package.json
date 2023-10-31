@@ -62,7 +62,7 @@
     "lazy-ass": "2.0.3",
     "lodash": "4.17.21",
     "mustache": "4.2.0",
-    "nodemailer": "6.9.6",
+    "nodemailer": "6.9.7",
     "rxjs": "7.8.1",
     "rxjs-compat": "6.6.7",
     "uuid4": "2.0.3"
@@ -70,7 +70,7 @@
   "devDependencies": {
     "audit-ci": "^6.6.1",
     "jsonpath": "1.1.1",
-    "nodemailer-mock": "2.0.1",
+    "nodemailer-mock": "2.0.2",
     "nodemon": "3.0.1",
     "npm-check-updates": "16.14.6",
     "npm-run-all": "4.1.5",
@@ -80,11 +80,11 @@
     "replace": "^1.2.2",
     "rewire": "7.0.0",
     "rxjs-marbles": "7.0.1",
-    "sinon": "16.1.0",
+    "sinon": "17.0.0",
     "standard": "17.1.0",
     "standard-version": "^9.5.0",
     "tap-spec": "^5.0.0",
-    "tape": "5.7.1",
+    "tape": "5.7.2",
     "tapes": "4.1.0"
   },
   "standard-version": {
