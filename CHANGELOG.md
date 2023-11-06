@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [14.0.0](https://github.com/mojaloop/email-notifier/compare/v13.0.1...v14.0.0) (2023-11-06)
+
+
+### Bug Fixes
+
+* **mojaloop/#3615:** update dependencies ([#212](https://github.com/mojaloop/email-notifier/issues/212)) ([ba5373e](https://github.com/mojaloop/email-notifier/commit/ba5373eb9e5e6bd413fc562c1a6e721f45752aee)), closes [mojaloop/#3615](https://github.com/mojaloop/project/issues/3615)
+
 ### [13.0.1](https://github.com/mojaloop/email-notifier/compare/v13.0.0...v13.0.1) (2023-10-31)
 
 
