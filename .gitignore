@@ -63,3 +63,5 @@ typings/
 
 .vscode/
 .idea/*
+
+sanitize-html
