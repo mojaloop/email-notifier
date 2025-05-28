@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [14.1.1](https://github.com/mojaloop/email-notifier/compare/v14.1.0...v14.1.1) (2025-05-28)
+
+
+### Bug Fixes
+
+* docker release access denied issue ([#222](https://github.com/mojaloop/email-notifier/issues/222)) ([3d2f1fa](https://github.com/mojaloop/email-notifier/commit/3d2f1fab411ba2ba910a8b6b4b53ec4643a1bc7f))
+
 ## [14.1.0](https://github.com/mojaloop/email-notifier/compare/v14.0.3...v14.1.0) (2025-05-28)
 
 
