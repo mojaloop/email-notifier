@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [14.1.2](https://github.com/mojaloop/email-notifier/compare/v14.1.1...v14.1.2) (2025-06-17)
+
+
+### Chore
+
+* bump deps for rdkafka ([#224](https://github.com/mojaloop/email-notifier/issues/224)) ([811868a](https://github.com/mojaloop/email-notifier/commit/811868ab36ea970ff532f676621edd8334693f95))
+
 ### [14.1.1](https://github.com/mojaloop/email-notifier/compare/v14.1.0...v14.1.1) (2025-05-28)
 
 
