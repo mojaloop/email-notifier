@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [14.1.5](https://github.com/mojaloop/email-notifier/compare/v14.1.4...v14.1.5) (2025-10-20)
+
+
+### Chore
+
+* **sbom:** update sbom [skip ci] ([16908d8](https://github.com/mojaloop/email-notifier/commit/16908d8fd1188a6a97a2e9bc887d11eda5b981c4))
+* update orb, node, grype, image and deps ([#230](https://github.com/mojaloop/email-notifier/issues/230)) ([6ef8775](https://github.com/mojaloop/email-notifier/commit/6ef8775aa185f1067907108993c7851ce4ea52c5))
+
 ### [14.1.4](https://github.com/mojaloop/email-notifier/compare/v14.1.3...v14.1.4) (2025-07-25)
 
 
