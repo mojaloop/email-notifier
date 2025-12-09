@@ -109,7 +109,9 @@
     "trim": "0.0.3",
     "yargs-parser": "21.1.1",
     "braces": "3.0.3",
-    "js-yaml": "available"
+    "js-yaml": "4.1.1",
+    "nodemailer": "7.0.11",
+    "glob": "10.5.0"
   },
   "standard-version": {
     "scripts": {
