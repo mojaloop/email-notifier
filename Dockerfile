@@ -10,7 +10,7 @@ ARG NODE_VERSION="22.22.0-alpine3.23"
 #
 
 # Build Image
-FROM node:${NODE_VERSION} as builder
+FROM node:${NODE_VERSION} AS builder
 WORKDIR /opt/app
 
 RUN apk --no-cache add git
