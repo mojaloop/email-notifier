@@ -12,6 +12,15 @@ ignore:
   - vulnerability: CVE-2025-60876
     include-aliases: true
     reason: "Alpine base image package (apk): busybox - no npm fix available as of 2026-02-06 (moderate severity)"
+  - vulnerability: GHSA-34x7-hfp2-rc4v
+    include-aliases: true
+    reason: "tar 6.2.1/7.4.3 bundled inside npm in Node.js Docker image (node:22.22.0-alpine3.23) - not an application dependency, no npm fix available as of 2026-02-10"
+  - vulnerability: GHSA-r6q2-hw4h-h46w
+    include-aliases: true
+    reason: "tar 6.2.1/7.4.3 bundled inside npm in Node.js Docker image (node:22.22.0-alpine3.23) - not an application dependency, no npm fix available as of 2026-02-10"
+  - vulnerability: GHSA-8qq5-rm4j-mr97
+    include-aliases: true
+    reason: "tar 6.2.1/7.4.3 bundled inside npm in Node.js Docker image (node:22.22.0-alpine3.23) - not an application dependency, no npm fix available as of 2026-02-10"
 output:
   - table
   - json
