@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [14.1.7](https://github.com/mojaloop/email-notifier/compare/v14.1.6...v14.1.7) (2026-02-12)
+
+
+### Chore
+
+* **ci:** update CircleCI orb to 1.1.10 ([#243](https://github.com/mojaloop/email-notifier/issues/243)) ([4b2d3c6](https://github.com/mojaloop/email-notifier/commit/4b2d3c62ae20c031b4a82e70b1468561f97d7fdb))
+* **sbom:** update sbom [skip ci] ([e473680](https://github.com/mojaloop/email-notifier/commit/e47368027344bbbec4e936f90ccd19cf9820b6f2))
+
 ### [14.1.6](https://github.com/mojaloop/email-notifier/compare/v14.1.5...v14.1.6) (2025-12-16)
 
 
