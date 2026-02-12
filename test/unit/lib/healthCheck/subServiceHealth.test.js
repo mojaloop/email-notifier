@@ -19,7 +19,7 @@ Test('SubServiceHealth test', function (subServiceHealthTest) {
   subServiceHealthTest.beforeEach(t => {
     sandbox = Sinon.createSandbox()
     sandbox.stub(Consumer, 'getListOfTopics')
-    sandbox.stub(Consumer, 'isConnected')
+    sandbox.stub(Consumer, 'getConsumer')
     sandbox.stub(mailer.transporter, 'verify')
 
     t.end()
@@ -75,10 +75,11 @@ Test('SubServiceHealth test', function (subServiceHealthTest) {
       test.end()
     })
 
-    brokerTest.test('broker test fails when one broker cannot connect', async test => {
+    brokerTest.test('broker test fails when one consumer is not healthy', async test => {
       // Arrange
       Consumer.getListOfTopics.returns(['admin1', 'admin2'])
-      Consumer.isConnected.throws(new Error('Not connected!'))
+      const mockConsumer = { isHealthy: sandbox.stub().resolves(false) }
+      Consumer.getConsumer.returns(mockConsumer)
       const expected = { name: serviceName.broker, status: statusEnum.DOWN }
 
       // Act
@@ -89,10 +90,40 @@ Test('SubServiceHealth test', function (subServiceHealthTest) {
       test.end()
     })
 
-    brokerTest.test('Passes when it connects', async test => {
+    brokerTest.test('broker test fails when getConsumer throws', async test => {
       // Arrange
       Consumer.getListOfTopics.returns(['admin1', 'admin2'])
-      Consumer.isConnected.returns(Promise.resolve(true))
+      Consumer.getConsumer.throws(new Error('No consumer found'))
+      const expected = { name: serviceName.broker, status: statusEnum.DOWN }
+
+      // Act
+      const result = await getSubServiceHealthBroker()
+
+      // Assert
+      test.deepEqual(result, expected, 'getSubServiceHealthBroker should match expected result')
+      test.end()
+    })
+
+    brokerTest.test('broker test fails when isHealthy throws', async test => {
+      // Arrange
+      Consumer.getListOfTopics.returns(['admin1', 'admin2'])
+      const mockConsumer = { isHealthy: sandbox.stub().rejects(new Error('Health check failed')) }
+      Consumer.getConsumer.returns(mockConsumer)
+      const expected = { name: serviceName.broker, status: statusEnum.DOWN }
+
+      // Act
+      const result = await getSubServiceHealthBroker()
+
+      // Assert
+      test.deepEqual(result, expected, 'getSubServiceHealthBroker should match expected result')
+      test.end()
+    })
+
+    brokerTest.test('Passes when all consumers are healthy', async test => {
+      // Arrange
+      Consumer.getListOfTopics.returns(['admin1', 'admin2'])
+      const mockConsumer = { isHealthy: sandbox.stub().resolves(true) }
+      Consumer.getConsumer.returns(mockConsumer)
       const expected = { name: serviceName.broker, status: statusEnum.OK }
 
       // Act
