@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [14.1.8](https://github.com/mojaloop/email-notifier/compare/v14.1.7...v14.1.8) (2026-02-25)
+
+
+### Chore
+
+* maintenance updates ([#244](https://github.com/mojaloop/email-notifier/issues/244)) ([d0b78a4](https://github.com/mojaloop/email-notifier/commit/d0b78a4df60f8dfa0ac18916b603f4a8eff97203))
+* **sbom:** update sbom [skip ci] ([cb3583d](https://github.com/mojaloop/email-notifier/commit/cb3583d9d4b12eb8e942ff0905206c8e45258da1))
+
 ### [14.1.7](https://github.com/mojaloop/email-notifier/compare/v14.1.6...v14.1.7) (2026-02-12)
 
 
