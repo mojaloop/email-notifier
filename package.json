@@ -1,6 +1,7 @@
 {
   "name": "email-notifier",
   "version": "14.1.8",
+  "private": true,
   "description": "email notifier to monitor the notification kafka topic and send emails.",
   "license": "Apache-2.0",
   "main": "app.js",
