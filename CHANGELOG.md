@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [14.1.9](https://github.com/mojaloop/email-notifier/compare/v14.1.8...v14.1.9) (2026-03-23)
+
+
+### Chore
+
+* add private:true to prevent npm publish ([#4384](https://github.com/mojaloop/email-notifier/issues/4384)) ([#245](https://github.com/mojaloop/email-notifier/issues/245)) ([a039263](https://github.com/mojaloop/email-notifier/commit/a0392636c99969556bd5a3ed3f4721e58e8a507b))
+* **sbom:** update sbom [skip ci] ([5af7a47](https://github.com/mojaloop/email-notifier/commit/5af7a4761900c24335cff4f1351e2b283e2e9e52))
+
 ### [14.1.8](https://github.com/mojaloop/email-notifier/compare/v14.1.7...v14.1.8) (2026-02-25)
 
 
