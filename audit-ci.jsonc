@@ -4,15 +4,8 @@
   // Only use one of ["low": true, "moderate": true, "high": true, "critical": true]
   "moderate": true,
   "allowlist": [ // NOTE: Please add as much information as possible to any items added to the allowList
-    "GHSA-87r5-mp6g-5w5j",
-    "GHSA-2g4f-4pwh-qvx6",
-    "GHSA-qpx9-hpmf-5gmw",
-    "GHSA-mh99-v99m-4gvg",
-    "GHSA-rgw5-rvv9-x895",
-    "GHSA-vccv-cmxp-4j9h",
-    "GHSA-g8qq-57p8-ggw5",
-    "GHSA-4mjr-xmp4-gh2g",
-    "GHSA-3jxr-9vmj-r5cp",
-    "GHSA-x5fp-wj9c-mxmx"
+    "GHSA-87r5-mp6g-5w5j", // jsonpath - all versions affected, no safe fix
+    "GHSA-2g4f-4pwh-qvx6", // ajv ReDoS - transitive via @mojaloop/inter-scheme-proxy-cache-lib
+    "GHSA-qpx9-hpmf-5gmw" // underscore DoS - transitive via jsonpath, unfixable without breaking change
   ]
 }
