@@ -6,6 +6,8 @@
   "allowlist": [ // NOTE: Please add as much information as possible to any items added to the allowList
     "GHSA-87r5-mp6g-5w5j", // jsonpath - all versions affected, no safe fix
     "GHSA-2g4f-4pwh-qvx6", // ajv ReDoS - transitive via @mojaloop/inter-scheme-proxy-cache-lib
-    "GHSA-qpx9-hpmf-5gmw" // underscore DoS - transitive via jsonpath, unfixable without breaking change
+    "GHSA-qpx9-hpmf-5gmw", // underscore DoS - transitive via jsonpath, unfixable without breaking change
+    "GHSA-vfj7-8cjw-p6xm", // braces stack-exhaustion DoS - advisory covers "<= 3.0.3" and 3.0.3 is the newest version published, so there is nothing to upgrade to. Dev-only: nodemon > chokidar > braces. Remove once braces 3.0.4 ships.
+    "GHSA-hp3w-g68c-fv3c" // sprintf-js DoS - advisory covers "<= 1.1.3" and 1.1.3 is the newest version published. Reached only via argparse 1.x under js-yaml 3.x (dev tooling). Remove once sprintf-js 1.1.4 ships.
   ]
 }
