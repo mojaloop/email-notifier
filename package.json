@@ -121,7 +121,7 @@
     "axios": "1.20.0",
     "immutable": "5.1.8",
     "minimatch@3.0.5": "3.1.5",
-    "handlebars": "4.7.9",
+    "handlebars": "4.7.10",
     "protobufjs": "7.6.5",
     "postcss": "8.5.23",
     "shell-quote": "1.12.0",
