@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [14.1.10](https://github.com/mojaloop/email-notifier/compare/v14.1.9...v14.1.10) (2026-10-10)
+
+
+### Bug Fixes
+
+* **security:** patch 1 vulnerability ([#247](https://github.com/mojaloop/email-notifier/issues/247)) ([201aaa7](https://github.com/mojaloop/email-notifier/commit/201aaa7cf71ab0bdbed3d94c1d90fcc4cc9ac692))
+* **security:** scope js-yaml/brace-expansion, bump argparse, refresh overrides ([#246](https://github.com/mojaloop/email-notifier/issues/246)) ([3134ea8](https://github.com/mojaloop/email-notifier/commit/3134ea815ed1e6a72c6b61625d07854146a75f92))
+
+
+### Chore
+
+* **sbom:** update sbom [skip ci] ([047c877](https://github.com/mojaloop/email-notifier/commit/047c877f9b195e36b493f697ce934c362afe1033))
+
 ### [14.1.9](https://github.com/mojaloop/email-notifier/compare/v14.1.8...v14.1.9) (2026-03-23)
 
 
